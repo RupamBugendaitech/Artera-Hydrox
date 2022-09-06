@@ -1,0 +1,8 @@
+<messaging:emailTemplate subject="Leave status" recipientType="User" relatedToType="ApexTrigger">
+<messaging:plainTextEmailBody >
+Hello ArteraResourceName,
+<br/> <br/>
+
+Your half day leave for startDate is LeaveStatus.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

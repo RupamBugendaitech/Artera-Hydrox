@@ -1,0 +1,18 @@
+<messaging:emailTemplate subject="JobAssignmentName" recipientType="User" replyTo="operatorresponseemail@ens21vp0qisarxwu6om3fi3fp3m0mb3i9zy6sekq3oluyhg7.1u-zngiuam.na210.apex.salesforce.com" relatedToType="Artera_Job_Allocation__c">
+<messaging:htmlEmailBody >
+Hello ArteraResourceSupervisor,
+<br /><br />
+There is a new job assigned to OperatorResourceName.
+<br /><b>Job Date:</b> ArteraJobDate
+<br /><b>Project Name</b> <a href="https://powerteamservices239587345.lightning.force.com/ProjectId"> ProjectName </a><br />
+<b>Contact Name</b> ArteraJobContactName<br />
+<b>Contact Number</b> ArteraJobContactNumber<br />
+<b>Start Time</b> ArteraJobStartTime<br />
+<b>Location:</b> ArteraJobLocation<br />
+<b>Dispatcher Notes:</b> ArteraJobDispatcherNotes<br />
+<br />If there are any questions please reach out to ArteraJobOwnerName <br />
+<br /><br />
+
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

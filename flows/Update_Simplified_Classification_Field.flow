@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <decisions>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>578</locationX>
+        <locationY>123</locationY>
+        <defaultConnector>
+            <targetReference>myDecision2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_Flows</name>
+            <conditionLogic>(1 OR 2 OR 3) AND (4 OR 5 OR 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Contract_Classification__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Customer - Blanket/MSA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contract_Classification__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Existing Customer - Blanket/MSA Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contract_Classification__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Existing Customer - New Blanket/MSA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contract_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Units Price</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contract_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Time &amp; Equipment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Contract_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Time &amp; Equipment (Not to Exceed)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_Simplified_Classification_field_to_Projec</targetReference>
+            </connector>
+            <label>Check if Flow</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
+        <locationX>927</locationX>
+        <locationY>216</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_Project</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LastModifiedBy.Profile.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_Simplified_Classification_field_to_Flow</targetReference>
+            </connector>
+            <label>Check if Project</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Update Simplified Classification Field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Simplified Classification Field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_the_Simplified_Classification_field_to_Flow</name>
+        <label>Update the Simplified Classification field to Flow</label>
+        <locationX>936</locationX>
+        <locationY>450</locationY>
+        <inputAssignments>
+            <field>Simplified_Classification__c</field>
+            <value>
+                <stringValue>Project</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_the_Simplified_Classification_field_to_Projec</name>
+        <label>Update the Simplified Classification field to Projec</label>
+        <locationX>499</locationX>
+        <locationY>451</locationY>
+        <inputAssignments>
+            <field>Simplified_Classification__c</field>
+            <value>
+                <stringValue>Flow</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>myDecision</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <dateTimeValue>2021-11-14T08:00:00.000Z</dateTimeValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

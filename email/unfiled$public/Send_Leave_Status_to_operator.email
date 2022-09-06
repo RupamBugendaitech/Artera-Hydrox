@@ -1,0 +1,13 @@
+<messaging:emailTemplate subject="Leave status" recipientType="User" relatedToType="Leave__c">
+<messaging:htmlEmailBody >
+
+Hello ArteraResourceName,
+<br/> <br/>
+Your Leave from startDate to endDate is LeaveStatus.
+<br/> 
+Reason for Rejection : ReasonForRejection
+
+
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Admin_Home_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>Admin</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Volt</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Customer</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Dispatcher</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job__c</pageOrSobjectType>
+        <recordType>Artera_Job__c.Internal</recordType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Operator</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Payroll</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Supervisor</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Job_Assignment_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Artera_Job_Allocation__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Hydro-X Account Receivables</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Integration User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Analytics Cloud Security User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Artera</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Chatter Free User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Chatter Moderator User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ContractManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CPQ Integration User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Chatter External User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>DDS</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Feeney</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Guest License User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Identity User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>KSE</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Limited Access User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>MarketingProfile</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Miller Pipeline</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Minimum Access - Salesforce</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Minnesota Limited</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Otis Eastern</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Read Only</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Read Only Maestral</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SEC</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>ServiceCloud</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>SolutionManager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>StandardAul</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Home_Page_Default</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <tabs>Admin_Home_Page</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>Artera_Job__c</tabs>
+    <tabs>Artera_Job_Allocation__c</tabs>
+    <tabs>Job_Ticket__c</tabs>
+    <tabs>Artera_Region__c</tabs>
+    <tabs>Leave__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Admin_UtilityBar</utilityBar>
+</CustomApplication>
