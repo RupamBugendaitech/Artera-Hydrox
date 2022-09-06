@@ -1,0 +1,15 @@
+<messaging:emailTemplate subject="Your Job is Cancelled" recipientType="User" relatedToType="Artera_Job_Allocation__c">
+<messaging:plainTextEmailBody >
+Hello ResourceName,
+<br /><br />
+
+A job <a href="https://powerteamservices239587345.lightning.force.com/ArteraJobAllocationId"> JobAssignmentName</a> is cancelled.
+ <br /> <b>Job :</b>ArteraJobName<br />
+<br /> <b>Job Date:</b>ArterajobDate<br />
+<b>Location:</b> LocationJob<br />
+
+If there are any queries please reach out the Supervisor: ArteraSupervisorName 
+
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

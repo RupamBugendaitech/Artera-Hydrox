@@ -1,0 +1,14 @@
+<messaging:emailTemplate subject="JobTicketAssigned" recipientType="User" relatedToType="Artera_Job_Allocation__c">
+<messaging:htmlEmailBody >
+Hello OperatorResourceName,
+<br /><br />
+
+A New Job Ticket  <a href ="https://powerteamservices239587345.lightning.force.com/TicketId">TicketName </a> is assigned to you
+<br /><b>Job - </b> ArteraJobName<br />
+<b>Job Date:</b> JobDate<br />
+<b>Location:</b> TicketLocation<br />
+<br /><br />
+If there are any questions, please reach out to Owner: JobOwner
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

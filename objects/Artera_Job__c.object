@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Job_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Job</label>
+    <nameField>
+        <displayFormat>J-{0000}</displayFormat>
+        <label>Job Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Jobs</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <searchLayouts>
+        <listViewButtons>Add_to_Mass_Merge_List</listViewButtons>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+    <compactLayouts>
+        <fullName>HydroX</fullName>
+        <fields>Name</fields>
+        <fields>Project__c</fields>
+        <fields>Asset__c</fields>
+        <fields>Region__c</fields>
+        <fields>OwnerId</fields>
+        <fields>Supervisor__c</fields>
+        <label>HydroX</label>
+    </compactLayouts>
+    <fields>
+        <fullName>Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset</label>
+        <referenceTo>Asset__c</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Jobs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Finish__c</fullName>
+        <externalId>false</externalId>
+        <label>Finish</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Created</fullName>
+                    <default>false</default>
+                    <label>Created</label>
+                </value>
+                <value>
+                    <fullName>Assignment in Progress</fullName>
+                    <default>false</default>
+                    <label>Assignment in Progress</label>
+                </value>
+                <value>
+                    <fullName>Dispatched</fullName>
+                    <default>false</default>
+                    <label>Dispatched</label>
+                </value>
+                <value>
+                    <fullName>Dispatched - Acknowledged</fullName>
+                    <default>false</default>
+                    <label>Dispatched - Acknowledged</label>
+                </value>
+                <value>
+                    <fullName>Pending Supervisor Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Supervisor Approval</label>
+                </value>
+                <value>
+                    <fullName>Pending Admin Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Admin Approval</label>
+                </value>
+                <value>
+                    <fullName>Pending Billing Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Billing Approval</label>
+                </value>
+                <value>
+                    <fullName>Pending Payroll Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Payroll Approval</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.Company__c</field>
+                <operation>equals</operation>
+                <value>025</value>
+            </filterItems>
+            <filterItems>
+                <field>Account.Status__c</field>
+                <operation>equals</operation>
+                <value>A</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Hydro_X_Jobs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Jobs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Project__c.Status__c</field>
+                <operation>equals</operation>
+                <value>A</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Jobs1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Job_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Job_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                    <label>Training</label>
+                </value>
+                <value>
+                    <fullName>Off Duty</fullName>
+                    <default>false</default>
+                    <label>Off Duty</label>
+                </value>
+                <value>
+                    <fullName>Non- Billable</fullName>
+                    <default>false</default>
+                    <label>Non- Billable</label>
+                </value>
+                <value>
+                    <fullName>Leave</fullName>
+                    <default>false</default>
+                    <label>Leave</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Normal</fullName>
+                    <default>true</default>
+                    <label>Normal</label>
+                </value>
+                <value>
+                    <fullName>Urgent</fullName>
+                    <default>false</default>
+                    <label>Urgent</label>
+                </value>
+                <value>
+                    <fullName>Critical</fullName>
+                    <default>false</default>
+                    <label>Critical</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Signed_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Signed  By</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName&amp;&apos; &apos;&amp;Owner:User.LastName</formula>
+        <label>Owner Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project__r.Project_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Supervisor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Supervisor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Jobs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Work Order</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.Account__c</field>
+                <operation>equals</operation>
+                <valueField>Work_Order__c.Account__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Work_Order__c</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Jobs1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Jobs1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_CDL__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary CDL</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.FirstName  &amp;&quot; &quot;&amp; Contact__r.LastName</formula>
+        <label>Contact Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Completed__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Status__c, &quot;Completed&quot;),true,false)</formula>
+        <label>Is Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Job_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Location</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project__r.Name</formula>
+        <label>Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Artera_Region__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Area</label>
+        <referenceTo>Artera_Region__c</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Hydro_X_Jobs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PDF_Generated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PDF Generated ?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payroll_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Hours</label>
+        <summarizedField>Artera_Job_Allocation__c.Total_Hours__c</summarizedField>
+        <summaryForeignKey>Artera_Job_Allocation__c.Job__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Approve_Ticket__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Approve Ticket?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contact1_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.Phone</formula>
+        <label>Contact Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resouces_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>Resources Name</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Customer_Job_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Job No.</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Supervisor_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( Supervisor__c ) ,&apos;-&apos;, Supervisor__r.FirstName&amp;&apos; &apos;&amp;Supervisor__r.LastName)</formula>
+        <label>Supervisor Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completion_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Completion Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dispatcher_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Dispatcher Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sent_To_Dynamics__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sent To Dynamics</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancellation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Requested by Customer</fullName>
+                    <default>false</default>
+                    <label>Requested by Customer</label>
+                </value>
+                <value>
+                    <fullName>Cancellation due to weather</fullName>
+                    <default>false</default>
+                    <label>Cancellation due to weather</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Job</fullName>
+                    <default>false</default>
+                    <label>Duplicate Job</label>
+                </value>
+                <value>
+                    <fullName>Created by error</fullName>
+                    <default>false</default>
+                    <label>Created by error</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Created_via_automation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Created via automation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Job_Ticket_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Billable Hours</label>
+        <summarizedField>Job_Ticket_Detail__c.Operator_Hours__c</summarizedField>
+        <summaryForeignKey>Job_Ticket_Detail__c.Job__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Cloned_From_Existing_Job__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Cloned From Existing Job</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Non_Billable_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Payroll_Hours__c - Total_Job_Ticket_Hours__c&gt;0,Payroll_Hours__c - Total_Job_Ticket_Hours__c,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Non-Billable Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Truck_Changed_by_Operator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Truck Changed by Operator?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>created_by_using_multi_Job_creation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>created by using multi Job creation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <recordTypes>
+        <fullName>Customer</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>HydroX</compactLayoutAssignment>
+        <label>Customer</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Cancellation due to weather</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Created by error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate Job</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested by Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Job_Type__c</picklist>
+            <values>
+                <fullName>Non- Billable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Duty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>Critical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Urgent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Assignment in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dispatched</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dispatched - Acknowledged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Admin Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Billing Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payroll Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Supervisor Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Internal</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>HydroX</compactLayoutAssignment>
+        <label>Internal</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Cancellation due to weather</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requested by Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Job_Type__c</picklist>
+            <values>
+                <fullName>Leave</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non- Billable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off Duty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>Critical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Urgent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Created</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Admin Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payroll Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <sharingReasons>
+        <fullName>Share_jobs_without_region_restriction__c</fullName>
+        <label>Share jobs without region restriction</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>Restrict_Job_date_change</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISCHANGED(Job_Date__c ),
+$User.Bypass_Validation__c = FALSE)</errorConditionFormula>
+        <errorDisplayField>Job_Date__c</errorDisplayField>
+        <errorMessage>You cannot update the Job Date after the job is created</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Use_only_active_projects</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Project__r.Status__c,&quot;I&quot;),$User.Bypass_Validation__c = FALSE)</errorConditionFormula>
+        <errorDisplayField>Project__c</errorDisplayField>
+        <errorMessage>The Project you have selected is inactive, please select an active project and try again.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>job_completed_Validation</fullName>
+        <active>true</active>
+        <description>when job status is completed the user is not able to edit the record Apart from the user who has the permission to bypass the validation.</description>
+        <errorConditionFormula>AND(ISPICKVAL(PRIORVALUE( Status__c ), &quot;Completed&quot;), $User.Bypass_Validation__c = FALSE)</errorConditionFormula>
+        <errorMessage>You can&apos;t change the record information.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_fields_validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK( Name  )  &amp;&amp;  ISBLANK( Job_Location__c )  &amp;&amp;  ISBLANK( Job_Date__c )</errorConditionFormula>
+        <errorMessage>Please fill up the required fields</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_picklist_values_for_Admin</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(
+$Profile.Name =&apos;Hydro-X Admin&apos;,
+TEXT( Status__c )!= &apos;Pending Billing Approval&apos;,
+ISCHANGED( Status__c )
+
+||
+$Profile.Name =&apos;Hydro-X Admin&apos;,
+TEXT( Status__c )!= &apos;Pending Supervisor Approval&apos;,
+ISCHANGED( Status__c )
+||
+$Profile.Name =&apos;Hydro-X Admin&apos;,
+TEXT( Status__c )!= &apos;Pending Admin Approval&apos;,
+ISCHANGED( Status__c )
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Error: You cannot update the job to this status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_Time_not_greater_than_End_Time</fullName>
+        <active>false</active>
+        <errorConditionFormula>Start_Date__c   &gt;   End_Date__c</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>Error -End Time should be Greater than Start Time</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_picklist_for_Acc_Receivables</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(
+$Profile.Name =&apos;Hydro-X Account Receivables&apos;,
+TEXT( Status__c )!= &apos;Pending Billing Approval&apos;,
+ISCHANGED( Status__c )
+
+||
+$Profile.Name =&apos;Hydro-X Account Receivables&apos;,
+TEXT( Status__c )!= &apos;Pending Payroll Approval&apos;,
+ISCHANGED( Status__c )
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Error: You cannot update the job to this status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Before_Dispatching_Job_Please_Add_Asset</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Status__c , &apos;Dispatched&apos;)  || 
+ISPICKVAL( Status__c , &apos;Dispatched - Acknowledged&apos;) || 
+
+ISPICKVAL( Status__c , &apos;Pending Supervisor Approval&apos;) ||
+
+ISPICKVAL( Status__c , &apos;Pending Admin Approval&apos;) ||
+ISPICKVAL( Status__c , &apos;Pending Billing Approval&apos;) ||
+ISPICKVAL( Status__c , &apos;Completed&apos;)  ,
+ ISBLANK( Asset__c ) 
+
+
+)</errorConditionFormula>
+        <errorMessage>Before Dispatching a Job Please Add Asset Field</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_picklist_values_for_Supervisor</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(
+            $Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;New&apos;,
+            ISCHANGED( Status__c )
+
+ || 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Assignment in Progress&apos;,
+            ISCHANGED( Status__c )
+ || 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Dispatched&apos;,
+            ISCHANGED( Status__c )
+ || 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Dispatched - Acknowledged&apos;,
+            ISCHANGED( Status__c )
+|| 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Pending Supervisor Approval&apos;,
+            ISCHANGED( Status__c )
+|| 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Pending Admin Approval&apos;,
+            ISCHANGED( Status__c )
+|| 
+$Profile.Name =&apos;Hydro-X Supervisor&apos;,
+            TEXT( Status__c )!= &apos;Cancelled&apos;,
+            ISCHANGED( Status__c )
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Error: You cannot update the job to this status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>restrict_picklist_values_for_dispatcher</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;New&apos;,
+ISCHANGED( Status__c )
+
+||
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Assignment in Progress&apos;,
+ISCHANGED( Status__c )
+||
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Dispatched&apos;,
+ISCHANGED( Status__c )
+||
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Dispatched - Acknowledged&apos;,
+ISCHANGED( Status__c )
+||
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Created&apos;,
+ISCHANGED( Status__c )
+||
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Pending Admin Approval&apos;,
+ISCHANGED( Status__c )
+|| 
+$Profile.Name =&apos;Hydro-X Dispatcher&apos;,
+TEXT( Status__c )!= &apos;Cancelled&apos;,
+ISCHANGED( Status__c )
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Error: You cannot update the job to this status.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>S_Docs</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>S-Docs</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>{!URLFOR(&apos;/apex/SDOC__SDCreate1&apos;, null,[id=Artera_Job__c.Id, Object=&apos;Artera_Job__c&apos;])}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SDoc_Mobile</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>SDoc Mobile</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>{!URLFOR(
+  &apos;/apex/SDOC__SDCreate1?id=&apos;
+  + Artera_Job__c.Id
+  + &apos;&amp;Object=Artera_Job__c&apos;
+  + &apos;&amp;lightningNav=true&apos;
+  + &apos;&amp;doclist=Daily Work Ticket Template&apos;
+)}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_to_Mass_Merge_List</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add to Mass Merge List</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/SDAddToMassMergeJob?objectName=Artera_Job__c</url>
+    </webLinks>
+    <webLinks>
+        <fullName>a0Q02000001p7TIEAY_a1a</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Airslate</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>{!URLFOR(&quot;/apex/pdffiller_sfree__airslateApp&quot;,null,[buttonId=&quot;a0Q02000001p7TIEAY&quot;,recordId=Artera_Job__c.Id,objectName=&quot;Artera_Job__c&quot;])}</url>
+    </webLinks>
+</CustomObject>
