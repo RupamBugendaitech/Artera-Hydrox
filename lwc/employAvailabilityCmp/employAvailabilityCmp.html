@@ -1,0 +1,131 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-13-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <div class="slds-align_absolute-center">
+        <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+        </lightning-spinner>
+    </div>
+
+    <div class="">
+        <lightning-layout multiple-rows="true">
+
+            <lightning-layout-item size="12" medium-device-size="12">
+                <div class="inner-right slds-card">
+                    <lightning-layout multiple-rows="true">
+
+
+                        <lightning-layout-item size="6" padding="around-small" alignment-bump="left">
+                            <label class="slds-form-element__label">Select Yard</label>
+                            <c-multi-select-picklist if:true={regionsList} options={regionsList} title="true"
+                                onvaluechange={handleRegion} label="Select Yard">
+
+                            </c-multi-select-picklist>
+
+
+                            <!-- <lightning-combobox placeholder="Select Yard..." options={regionsList} value={region} onchange={handleRegion}>
+                        </lightning-combobox> -->
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+
+                    <lightning-layout multiple-rows="true">
+
+                        <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                            <lightning-input placeholder="Start Date" value={defaultDate} type="date"
+                                variant="label-hidden" onchange={handleDateEmp} required="" >
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                            <lightning-input type="text" value="" onkeyup={handleResource} onblur={handleResource}
+                                aria-activedescendant="option1" aria-autocomplete="list"
+                                aria-controls="listbox-id-12" role="textbox" placeholder="Search By Resource.."
+                                variant="label-hidden">
+                            </lightning-input>
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="12">
+                            <div class=" div-table" style="height:250px;text-align:center;">
+                                <div class="slds-scrollable" style="height:100%;">
+
+                                    <table class="slds-table slds-table_bordered  slds-table_cell-buffer ">
+                                        <thead class="">
+                                            <tr class="slds-text-title--caps ">
+                                                <th scope="col">Resource Name</th>
+
+                                                <th scope="col">Region</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={getAllResource} for:item="index">
+                                                <tr class="slds-line-height_reset slds-text-align_center"
+                                                    key={index.Id}>
+                                                    <td> {index.Name}</td>
+                                                    <td style="padding-left: 0px;margin-right:5px"> {index.Region}</td>
+                                                    <td style="padding-left: 0px; margin-right:5px"> <span
+                                                            class={index.BgColor}>{index.Title}</span></td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                        <!-- <lightning-layout-item size="12">
+                            <div class="slds-table--header-fixed_container" style="height:250px;">
+                                <div class="slds-scrollable_y" style="height:100%;">
+                                    <table class="slds-table slds-table_cell-buffer slds-table--header-fixed">
+                                        <thead>
+                                            <tr class="slds-line-height_reset slds-text-title--caps">
+                                                <th scope="row" style="font-weight: bold;font-size:14px"
+                                                    class="th-emp  slds-cell-fixed">
+                                                    Resource Name</th>
+                                                <th scope="row" style="font-weight: bold;font-size:14px"
+                                                    class="th-emp slds-cell-fixed">
+                                                    Region</th>
+                                                <th scope="row" style="font-weight: bold;font-size:14px"
+                                                    class="th-emp slds-cell-fixed">
+                                                    Status</th>
+                                            </tr>
+                                        </thead>
+                                
+                                        
+                                        <template for:each={getAllResource} for:item="index">
+                                            <tr class="slds-line-height_reset" key={index.Id}>
+                                                <td>
+                                                    <div style=" text-transform:capitalize">
+                                                        {index.Name}</div>
+                                                </td>
+                                                <td>
+                                                    <div style=" text-transform:capitalize">
+                                                        {index.Region}</div>
+                                                </td>
+                                                <td>
+                                                    <span class={index.BgColor}>{index.Title}</span>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                   
+                                    </table>
+                                </div>
+                            </div>
+                           
+
+                        </lightning-layout-item> -->
+                    </lightning-layout>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+
+    </div>
+</template>

@@ -1,0 +1,70 @@
+.heading{
+    font-size: 16pt;
+    font-weight: bold;
+}
+hr{
+    margin:0px;
+}
+h1{
+    margin-left: 5px;
+}
+.seprater{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+th{
+    padding: 3px;
+    /* text-align: center; */
+    /* margin: 3px; */
+}
+footer{
+    display: none;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px; 
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #f2f2f2;
+}
+.button-btn{
+    margin-bottom: 6%;
+}
+.fix-width{
+    /* *width: 150px; */
+}
+.sr-class{
+    width: 5% !important;
+}
+.action-class{
+    width: 5% !important;
+}
+.line-class{
+    width: 55% !important;
+}
+.qty-class{
+    width: 25% !important;
+}
+.seprater{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.own-btn > .slds-button .slds-button_destructive{
+    margin: 0px;
+    padding: 0px 6px!important;
+    padding-left:6px!important;
+}
+.delete-btn:first-child(){
+    display: none;
+}
+.container-div{
+    padding: 15px 15px 0 15px;
+}
+.sub-tr{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.slds-modal__content {
+   overflow: initial;  
+}

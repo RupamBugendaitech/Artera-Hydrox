@@ -1,0 +1,282 @@
+<template>
+
+    <br />
+    <div class="slds-align_absolute-center">
+        <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+        </lightning-spinner>
+    </div>
+    <lightning-layout class="slds-align_absolute-center container slds-card">
+        <lightning-layout-item size="12">
+            <div class="slds-card">
+                <div class="container-div">
+                    <!-- <div class="slds-text-heading_large heading">Daily Work Ticket</div> -->
+                    <h1 class="slds-m-vertical_medium slds-text-title_bold">Time Tracking </h1>
+
+
+                    <div>
+                        <h1 class="slds-m-vertical_medium slds-text-title_bold">Job Ticket Number: {JobTicket}
+                        </h1>
+
+
+                        <div class="lgc-bg">
+                            <lightning-layout multiple-rows horizontal-align="spread">
+                                <lightning-layout-item size="6">
+                                    <lightning-input class="slds-m_right-medium slds-p-right_medium" placeholder="Start Time" type="time"
+                                        label="Start Time" value={StartTime} data-field="StartTime">
+
+                                    </lightning-input>
+                                </lightning-layout-item>
+                                
+                                <lightning-layout-item size="6">
+                                    <lightning-input class="slds_left-medium slds-p-left_medium" placeholder="End Time" type="time"
+                                        label="End Time" value={EndTime} data-field="EndTime">
+                                    </lightning-input>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </div>
+                    <h1 class="slds-m-vertical_medium slds-text-title_bold">Status: {Status}</h1>
+                    <h1 class="slds-m-vertical_medium slds-text-title_bold">Location: {Location}</h1>
+
+
+                    <h1 class="slds-text-title_bold slds-col"><span class="slds-m-right_small">Job Ticket Details</span>
+                        <template if:true={btnBool}>
+                            <lightning-button-icon variant="brand" onclick={showNewLineItemModal} icon-name="utility:add"
+                                alternative-text="Add" title="Add" class=" slds-col">
+                            </lightning-button-icon>
+                        </template>
+                    </h1>
+
+                    <table
+                        class="slds-table slds-table_cell-buffe table slds-size_1-of-2 table slds-p-around_small slds-m-around_small"
+                        aria-label="Job Allocations">
+                        <thead class=" slds-p-around_small">
+                            <tr class="slds-line-height_reset">
+                                <th width="5%" scope="col">
+                                    #
+                                </th>
+                                <th width="30%" scope="col">
+                                    Line Item
+                                </th>
+                                <th width="20%" scope="col">
+                                    Quantity
+                                </th>
+                                <th width="20%" scope="col">
+                                    Action
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <template if:true={lineItemList}>
+                                <template for:each={lineItemList} for:item="index">
+
+                                    <tr key={index} class="slds-hint-parent">
+                                        <td scope="col" class="sub-tr-th" data-label="LineItem">
+                                            {index.SrNo} </td>
+                                        <td scope="col" class="sub-tr-th" data-label="LineItem">
+                                            {index.UnitName} </td>
+                                        <td scope="col" class="sub-tr-th" data-label="Quantity">
+                                            {index.Quantity}
+                                        </td>
+                                        <td>
+                                            <template if:true={btnBool}>
+                                                <lightning-button-icon icon-name="utility:edit" variant="brand"
+                                                    data-id={index.Id} alternative-text="Update" class="slds-m-right_small"
+                                                    title="Update" onclick={showEditLineItemModal}>
+                                                </lightning-button-icon>
+                                                <lightning-button-icon class="slds-m-left_small" onclick={deleteLineItem}
+                                                    data-id={index.Id} icon-name="utility:delete" alternative-text="Delete"
+                                                    title="Delete"></lightning-button-icon>
+                                            </template>
+                                        </td>
+
+                                    </tr>
+
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+                <!-- modal New Ticker -->
+
+
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    class={modalCreateTicket}>
+                    <div class="slds-modal__container">
+
+                        <div class="slds-modal__header">
+                            <h4 id="modal-heading-03" class="slds-modal__title slds-hyphenate">New Job Ticket</h4>
+                            
+                        </div>
+                        <div class="slds-modal__content slds-scrollable slds-p-around_medium" id="modal-content-id-3">
+
+                            <lightning-layout multiple-rows="true">
+                                <lightning-layout-item size="10" padding="around-small">
+
+                                    <c-line-item-picklist-cmp class="slds-p-top_xx-small" record-id={projectId}
+                                        line-item={defaultLookupId} label="Line Items"  
+                                        data-type="New" onlineitemvalue={handleLineItemValues} style="overflow-wrap: break-word;" >
+                                    </c-line-item-picklist-cmp>
+
+                                </lightning-layout-item>
+
+                                <lightning-layout-item size="2" padding="around-small">
+                                    <lightning-input label="Quantity" data-field="NQuantity"
+                                        value="0">
+                                    </lightning-input>
+                                </lightning-layout-item>
+
+                            </lightning-layout>
+                            <!-- <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-scrollable"
+                                aria-label="Example table of Opportunities with no row hovers">
+                                <thead>
+                                    <tr>
+                                        <th class="slds-text-align_left sr-class">#</th>
+                                        <th class="slds-text-align_left line-class">Line Item</th>
+                                        <th class="slds-text-align_left qty-class">Quantity</th>
+                                        <th class="slds-text-align_left action-class">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="item-body">
+
+
+                                    <template for:each={recordList} for:item="rec" for:index="indx">
+                                        <tr key={rec.key} id={rec.key} class="slds-hint-parent">
+                                            <td class="slds-text-align_left">{rec.key}</td>
+                                            <td class="slds-text-align_left">
+                                                <div class="own-class"> 
+                                                    <c-line-item-picklist-cmp class="slds-p-top_xx-small"
+                                                        record-id={projectId}
+                                                        line-item={defaultLookupId}
+                                                        label-mode="label-hidden" data-id={indx} data-type="New"
+                                                        onlineitemvalue={handleLineItemValues}>
+                                                    </c-line-item-picklist-cmp>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <lightning-input variant="label-hidden" data-id={indx}
+                                                    data-field="NQuantity" value="0" onchange={handleQuantityChange}>
+                                                </lightning-input>
+                                            </td>
+                                            <td class="slds-text-align_left">
+
+                                                <template if:true={rec.ShowDel}>
+                                                    <lightning-button-icon variant="bare" icon-name="utility:delete"
+                                                        data-id={indx} alternative-text="Delete"
+                                                        class="slds-m-left_x-small " onclick={removeRow} title="Delete">
+                                                    </lightning-button-icon>
+                                                </template>
+                                                <template if:false={rec.ShowDel}>
+
+                                                </template>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table> -->
+
+
+                        </div>
+                        <div class="slds-modal__footer">
+                            <lightning-button label="Close" title="Non-primary action" onclick={closeNewLineItemModal}
+                                class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button label="Save" variant="brand" data-id={selectedJobId}
+                                title="Non-primary action" onclick={handleSaveLineItems} class="slds-m-left_x-small">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </section>
+                <div class={modalBackdropCreateTicket} role="presentation"></div>
+
+                <!-- edit Modal lineItem -->
+
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    class={modalEditTicket}>
+                    <div class="slds-modal__container">
+
+                        <div class="slds-modal__header">
+                            <h4 id="modal-heading-04" class="slds-modal__title slds-hyphenate">Edit Ticket Detail</h4>
+                        </div>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+
+                            <lightning-layout multiple-rows="true">
+                                <lightning-layout-item size="10" padding="around-small">
+                                    <template if:true={isModalEditTkt}>
+                                        <c-line-item-picklist-cmp class="slds-p-top_xx-small" record-id={projectId}
+                                            label="Line Item" label-mode="" data-type="Edit"
+                                            line-item={defaultLookupId} onlineitemvalue={handleLineItemValues}>
+                                        </c-line-item-picklist-cmp>
+
+
+                                    </template>
+
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" padding="around-small">
+                                    <lightning-input label="Quanity" value={selectedAllocation.Quantity}
+                                        data-field="EQuantity"></lightning-input>
+                                </lightning-layout-item>
+
+                            </lightning-layout>
+
+                        </div>
+                        <div class="slds-modal__footer">
+                            <lightning-button label="Close" title="Non-primary action" onclick={closeEditModal}
+                                class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button label="Update" variant="brand" title="Non-primary action"
+                                onclick={handleEditLineItem} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                    </div>
+                </section>
+                <div class={modalBackdropEditTicket} role="presentation"></div>
+
+
+
+
+                <div
+                    class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-p-around_medium">
+                    <hr>
+                    <div class="slds-truncate slds-m-top_small" title="Notes">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning-textarea label="Notes" name="input3" placeholder="Type Here..."
+                                    data-field="Notes" value={Notes}></lightning-textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                
+               
+            </div>
+
+            <div class="slds-grid slds-text-align_center slds-m-around_small button-btn">
+                <lightning-button variant="Brand" label="Back" value="Back" onclick={handleBack} class="slds-col "
+                    style="font-size: 0.6rem; font-weight:bold"></lightning-button>
+                    <template if:true={btnBool}>
+                        <lightning-button variant="neutral" label="Save Draft" value="In Progress" onclick={handleClick}
+                            class="slds-col " style="font-size: 0.6rem; font-weight:bold"></lightning-button>
+
+                        <lightning-button variant="success" label="Complete Ticket" value="Completed" onclick={handleClick}
+                            class="slds-col" style="font-size: 0.6rem;color:white; font-weight:bold"></lightning-button>
+                    </template>
+            </div>
+
+        </lightning-layout-item>
+
+
+    </lightning-layout>
+    <footer>
+        <div class="slds-text-align_right slds-m-vertical_small">
+            <lightning-button label="Cancel" variant="destructive" title="Non-primary action" onclick={handleCancel}
+                class="slds-m-left_x-small"></lightning-button>
+
+        </div>
+    </footer>
+</template>

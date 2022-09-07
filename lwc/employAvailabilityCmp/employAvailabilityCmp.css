@@ -1,0 +1,14 @@
+.border{
+    border:1px solid black;
+}
+
+.cus-font{
+    font-size: 8pt!important;
+    width: 80px!important;
+    justify-content: center!important;
+}
+
+.custom-box{
+    height:250px;
+    overflow-x: scroll;
+}

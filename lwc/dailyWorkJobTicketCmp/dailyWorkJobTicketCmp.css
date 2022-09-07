@@ -1,0 +1,78 @@
+.main-class{
+    padding: 5px;
+}
+.text-uppercase{
+    text-transform: capitalize;
+}
+.tile-class{ 
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+
+}
+
+th{
+    padding: 3px;
+    /* text-align: center; */
+    /* margin: 3px; */
+}
+td{
+    margin: 3px;
+    padding: 3px;
+}
+.tile-class:hover{
+    background: #f8f8f8; 
+}
+
+.heading{
+    font-size: 12pt;
+    font-weight: 700;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.ticket-name{
+    cursor: pointer; 
+    text-transform: capitalize;
+    color: rgb(1, 68, 134);
+}
+
+.sign-inp{
+    margin: auto;
+    width: 100%;
+}
+
+.custom-div{
+    width:307px;
+    margin: auto;
+}
+
+.custom-div label{
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+/* .slds-modal__container {
+
+    hei
+} */
+.slds-modal__content {
+    overflow: initial;
+    /* height : 15vh !important; 
+    max-height: 15vh !important;  */
+}
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px; 
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: #f2f2f2;
+    display: none;
+}
+
+.saveBtn button{
+    width: 110px!important;
+}
