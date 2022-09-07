@@ -1,0 +1,49 @@
+.sub-tr-th{ 
+    /* background: #f4f4f4; */
+    color: rgb(68, 68, 68);
+    font-weight: bold;
+}
+
+.table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.dis-img{
+    width: 32px;
+    height: 26px;
+    
+}
+ 
+.heading-class{
+    text-transform: capitalize;
+}
+.toogle-btn{
+    width: 150px;
+}
+.bgColor1{width: 175px;justify-content:center;background-color:#0ca789}
+
+.bgColor2{width: 175px;justify-content:center;background-color:#fef445}
+
+.bgColor3{width: 175px;justify-content:center;background-color:#fef445}
+
+.bgColor4{width: 175px;justify-content:center;background-color:#fef445}
+
+.bgColor5{width: 175px;justify-content:center;background-color:#f24726}
+
+.bgColor6{width: 175px;justify-content:center;background-color:#8fd14f}
+
+.bgColor7{width: 175px;justify-content:center;background-color:#0ca789}
+
+.bgColor8{width: 175px;justify-content:center;background-color:#fef445}
+
+.bgColor9{width: 175px;justify-content:center;background-color:#ff9d00}
+
+.truck-checked{width: 85px;justify-content:center;background-color:#f24726}
+
+.truck-unchecked{width: 85px;justify-content:center;}
+
+.slds-modal__content{
+    overflow: initial;
+}

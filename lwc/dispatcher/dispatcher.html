@@ -1,0 +1,788 @@
+<template>
+  <div class="slds-box slds-theme--default" style="width: 100%;">
+    <div class="slds-align_absolute-center">
+      <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+      </lightning-spinner>
+    </div>
+    <div style="padding: 2px; float: right; margin-bottom: 5px;">
+      <!-- <lightning-button variant="brand" label="Approve Selected" class="slds-m-left_x-small"></lightning-button> -->
+      <!-- <lightning-button variant="brand" label="Collapse All" onclick={collapseAll} class="slds-m-left_x-small"></lightning-button> -->
+      <lightning-layout multiple-rows="true" horizontal-align="end">
+        <lightning-layout-item padding="around-small">
+          <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh" title="Refresh"
+            onclick={afterEditRefresh}></lightning-button-icon>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+          <lightning-input placeholder="Start Date" value={searchByDate} id="searchDate" type="date"
+            variant="label-hidden" onchange={handleDate}>
+          </lightning-input>
+
+        </lightning-layout-item>
+
+        <lightning-layout-item flexibility="auto" padding="around-small">
+          <lightning-input type="text" id="searchVal" class="slds-float_right" aria-activedescendant="option1"
+            aria-autocomplete="list" aria-controls="listbox-id-12" role="textbox" placeholder="Search Jobs"
+            onkeyup={handleSearch} variant="label-hidden" value={searchKeyword}>
+          </lightning-input>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+          <select class="slds-select" onchange={handleToggleJobs}>
+            <option value="select">--Select Job Type--</option>
+            <option value="Show My Jobs" selected="">Show My Jobs</option>
+            <option value="Show All Jobs">Show All Jobs</option>
+          </select>
+
+          <!-- <label class="slds-checkbox_toggle slds-grid">
+                        <span class="slds-form-element__label slds-m-bottom_none"></span>
+                        <input type="checkbox" name="checkbox-toggle-20" onchange={handleToggleJobs}  value="checkbox-toggle-20" aria-describedby="checkbox-toggle-20" checked="" />
+                        <span id="checkbox-toggle-20" class="slds-checkbox_faux_container" aria-live="assertive">
+                          <span class="slds-checkbox_faux"></span>
+                          <span class="slds-checkbox_on">My Jobs</span>
+                          <span class="slds-checkbox_off">All Jobs</span>
+                        </span>
+                      </label> -->
+        </lightning-layout-item>
+
+        <lightning-layout-item flexibility="auto" padding="around-small">
+          <c-multi-select-picklist if:true={regionsList} title="false" options={regionsList}
+            onvaluechange={handleRegion}>
+          </c-multi-select-picklist>
+        </lightning-layout-item>
+
+        <!-- <lightning-layout-item   padding="around-small">
+                        <lightning-button variant="brand" label={jobToggleTitle} title={jobToggleTitle}
+                                    class="slds-text-body_xx-small toogle-btn" onclick={handleShowJobs}></lightning-button>
+                                
+                </lightning-layout-item> -->
+        <lightning-layout-item flexibility="auto" padding="around-small">
+          <lightning-button variant="brand" label="Dispatch Selected" title="Dispatch Selected"
+            class="slds-text-body_xx-small" onclick={handleDispatchAll}></lightning-button>
+        </lightning-layout-item>
+      </lightning-layout>
+      </div>
+      
+      <div class="counter-div">
+          <!-- <lightning-layout multiple-rows="true" horizontal-align="start">
+            <lightning-layout-item size="5" padding="around-small">
+              <h3>Resources Available: {resourceCount}</h3>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" padding="around-small">
+              <h3>Total Jobs: {totalJobs}</h3>
+            </lightning-layout-item>
+            <lightning-layout-item size="5" padding="around-small">
+              <h3>Unassigned Jobs: {newJobCountsMain} </h3>
+            </lightning-layout-item>
+          </lightning-layout>  -->
+          <div class="titleCount">
+            <h2>Resources Available: {resourceCount}</h2>
+          </div>
+          <div class="titleCount">
+            <h2>Total Jobs: {totalJobs}</h2>
+          </div>
+          <div class="titleCount">
+            <h2>Unassigned Jobs: {newJobCountsMain}</h2>
+          </div>
+      </div><br>
+
+    
+ 
+   
+
+    <table class="slds-table slds-table_cell-buffe table slds-scrollable ownTable" style="height: 60vh;">
+      <thead>
+        <tr class="slds-line-height_reset">
+          <th width="8%">Action</th>
+          <th width="8%"></th>
+          <th scope="col">
+            <div class="slds-truncate" title="Dispatch">Dispatch</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Project Name">Project Name</div>
+          </th>
+          <!-- <th scope="col">
+                        <div class="slds-truncate" title="Job Number">Job Number</div>
+                    </th> -->
+          <!-- <th scope="col">
+            <div class="slds-truncate" title="Customer Name">Customer</div>
+          </th> -->
+          <!-- <th scope="col">
+                        <div class="slds-truncate" title="Scope">Scope</div>
+                    </th> -->
+          <th scope="col">
+            <div class="slds-truncate" title="Location">Location</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Date">Date</div>
+          </th>
+          <th scope="col" style="text-align: center;">
+            <div class="slds-truncate" title="Status">Status</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Area">Area</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Area">Resources</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Scope of work">
+              Scope of work
+            </div>
+          </th>
+          <!-- <th scope="col">
+                        <div class="slds-truncate" title="Work Order">Work Order</div>
+                    </th> -->
+          <th scope="col">
+            <div class="slds-truncate" title="Truck">Truck</div>
+          </th>
+
+          <th scope="col">
+            <div class="slds-truncate" title="Start Time">Start Time</div>
+          </th>
+
+          <th scope="col">
+            <div class="slds-truncate" title="Contact Name">Contact Name</div>
+          </th>
+
+          <th scope="col">
+            <div class="slds-truncate" title="Contact Number">
+              Contact Number
+            </div>
+          </th>
+
+          <!-- <th scope="col">
+                        <div class="slds-truncate" title="End">End Time</div>
+                    </th> -->
+          <!-- <th scope="col">
+                        <div class="slds-truncate" title="Clone Job">Clone</div>
+                    </th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <template iterator:it={records}>
+          <tr class="slds-hint-parent" key={it.value.objJobs.Id}
+            style="cursor: pointer; border-bottom: 1px solid lightgray;">
+            <td style="display: flex; flex-direction: row;">
+              <lightning-input type="checkbox" class="slds-m-bottom_x-small checkbox" title="Click Here to Show"
+                label="" data-record-id={it.value.objJobs.Id}>
+              </lightning-input>
+              <!-- <a  onclick={hideAndShow} data-record-id={it.index} style="display:block;text-decoration:none;color:black;">                  -->
+              <lightning-button-icon variant="bare" icon-name={iconType} class="slds-m-right_xx-small icnClass"
+                alternative-text="Click Here to Expand" title="Click Here to Expand" onclick={hideAndShow}
+                data-record-id={it.index}>
+              </lightning-button-icon>
+              <!-- </a> -->
+            </td>
+            <td>
+              <lightning-button-icon variant="brand" onclick={editShowModalJob} icon-name="utility:edit"
+                data-record-id={it.value.objJobs.Id} alternative-text="Edit" title="Edit" style="margin-right: 5px;">
+              </lightning-button-icon>
+            </td>
+            <td data-label="Dispatch" class="">
+              <template if:true={it.value.isShow}>
+                <img src={disIco} alt="" class="dis-img" data-record-id={it.value.objJobs.Id}
+                  onclick={handleDispatch} />
+              </template>
+            </td>
+            <td data-label="Job Name" class="heading-class">
+              <a href={it.value.link} target="_blank">{it.value.projectName}</a>
+            </td>
+            <!-- <td data-label="Job Number">
+
+                            {it.value.objJobs.Job_Id__c}
+
+                        </td> -->
+
+            <!-- <td data-label="Customer Name">
+              {it.value.Customer}
+            </td> -->
+            <!-- <td data-label="Scope">
+
+                            {it.value.objJobs.Scope__c}
+
+                        </td> -->
+            <td data-label="Location" class="slds-cell-wrap">
+              {it.value.objJobs.Job_Location__c}
+              <!-- {it.value.regionObj} -->
+              <!-- {it.value.Region} -->
+            </td>
+            <td data-label="Date">
+              {it.value.JobDate}
+            </td>
+            <td data-label="Status" style="text-align: center;">
+              <span class={it.value.BackgroundColor}>{it.value.objJobs.Status__c}</span>
+            </td>
+            <td data-label="Area">
+              {it.value.Region}
+
+              <!-- {it.value.regionObj} -->
+            </td>
+            <td data-label="Resources" class="slds-cell-wrap">
+              {it.value.PrimaryCDL}
+
+              <!-- {it.value.regionObj} -->
+            </td>
+            <td data-label="Scope of work"  class="slds-cell-wrap">
+              {it.value.scope}
+            </td>
+            <!-- <td data-label="Work Order">
+                            {it.value.woName}
+                        </td> -->
+            <td data-label="Truck">
+              {it.value.trackname}
+            </td>
+
+            <td data-label="Start Time">
+              <lightning-formatted-time value={it.value.Time}>
+              </lightning-formatted-time>
+            </td>
+            <!-- <td data-label="End Date">
+                            {it.value.objJobs.End_Date__c}
+                        </td> -->
+            <td data-label="Contact Name">
+              {it.value.Contact}
+            </td>
+            <td data-label="Contact Number">{it.value.ContactNo}</td>
+            <!-- <td data-label="Clone">
+                            <lightning-button-icon variant="success" onclick={deleteAssign} data-record-id={it.value.Id}
+                                icon-name="utility:copy" alternative-text="Clone" title="Clone"></lightning-button-icon>
+                        </td> -->
+          </tr>
+          <template if:true={it.value.IsOpen} key={it.value.objJobs.Id} style="padding: 5px;">
+            <tr scope="row" key={it.value.objJobs.Id} class="sub-tr">
+              <th scope="col"></th>
+
+              <th scope="col">
+                <lightning-button-icon variant="brand" onclick={showModalAssignment} data-title={it.value.objJobs.Name}
+                  data-record-id={it.value.objJobs.Id} icon-name="utility:add" alternative-text="Add" title="Add"
+                  class="addBtn" style="width: 26px; height: 26px;">
+                </lightning-button-icon>
+                <!-- <lightning-button onclick={createJOBAssg} data-record-id={it.value.objJobs.Id} variant="success" label="Add" class="slds-m-left_x-small"></lightning-button> -->
+              </th>
+              <th scope="col" colspan="3" class="sub-tr-th">Assignments</th>
+              <th scope="col"></th>
+            </tr>
+            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col" class="sub-tr-th">Assignment Number</th>
+              <th scope="col" class="sub-tr-th">Employee Name</th>
+              <th scope="col" class="sub-tr-th">Employee ID</th>
+              <th scope="col" class="sub-tr-th">Status</th>
+              <th scope="col" class="sub-tr-th"></th>
+              <th scope="col" class="sub-tr-th"></th>
+              <th scope="col" class="sub-tr-th"></th>
+              <th scope="col"></th>
+            </tr>
+
+            <template if:true={it.value.jobBool}>
+              <template iterator:it={it.value.jobAllocations}>
+                <tr key={it.value.Id}>
+                  <td></td>
+                  <td>
+                    <lightning-button-icon variant="brand" onclick={editShowModalAss} icon-name="utility:edit"
+                      data-employee={it.value.ResId} data-title={it.value.Name} data-record-id={it.value.Id}
+                      alternative-text="Edit" title="Edit" style="margin-right: 5px;">
+                    </lightning-button-icon>
+
+                    <lightning-button-icon variant="success" onclick={deleteRecord} data-index-id={it.index}
+                      data-type="Assignment" data-title={it.value.Name} data-id={it.value.Id} icon-name="utility:delete"
+                      alternative-text="Delete" title="Delete" style="margin-left: 5px; margin-right: 5px;">
+                    </lightning-button-icon>
+
+                    <!-- <lightning-button onclick={deleteAssign} data-recid={it.value.Id} variant="destructive text" label="Delete" class="slds-m-left_x-small"></lightning-button> -->
+                  </td>
+                  <td>
+                    <a href={it.value.URL} target="_blank">{it.value.Name}</a>
+                  </td>
+                  <td>
+                    <a href={it.value.ResURL} target="_blank">{it.value.ResName}</a>
+                  </td>
+                  <td>{it.value.ResEmpId}</td>
+                  <td>{it.value.Status}</td>
+
+                  <td></td>
+                  <td></td>
+                  <td></td>
+
+                  <td></td>
+                </tr>
+              </template>
+            </template>
+            <template if:false={it.value.jobBool}>
+              <tr key={it.value.objJobs.Id}>
+                <td></td>
+
+                <td>No Job Allocations</td>
+              </tr>
+            </template>
+          </template>
+          <template if:true={it.value.IsOpen} key={it.value.objJobs.Id} style="padding: 5px;">
+            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+              <th scope="col"></th>
+              <th scope="col">
+                <lightning-button-icon variant="brand" onclick={showModalTicket} data-title={it.value.objJobs.Name}
+                  data-record-id={it.value.objJobs.Id} icon-name="utility:add" class="addBtn" alternative-text="Add"
+                  title="Add" style="width: 26px; height: 26px;">
+                </lightning-button-icon>
+              </th>
+              <th scope="col" colspan="3" class="sub-tr-th">Tickets</th>
+            </tr>
+            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col" class="sub-tr-th">Ticket Number</th>
+              <th scope="col" class="sub-tr-th">Location</th>
+              <th scope="col" class="sub-tr-th">Customer Ref No</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+
+            <template if:true={it.value.tktBool}>
+              <template iterator:it={it.value.jobTickets}>
+                <tr key={it.value.Id}>
+                  <td></td>
+                  <td>
+                    <lightning-button-icon variant="brand" onclick={editShowModalTicket}
+                      data-location={it.value.Location} data-title={it.value.Name} data-cusrefno={it.value.custRefNo}
+                      data-record-id={it.value.Id} icon-name="utility:edit" alternative-text="Edit" title="Edit"
+                      style="margin-right: 5px;">
+                    </lightning-button-icon>
+
+                    <lightning-button-icon variant="success" onclick={deleteRecord} data-index-id={it.index}
+                      data-type="Ticket" data-title={it.value.Name} data-id={it.value.Id} icon-name="utility:delete"
+                      alternative-text="Delete" title="Delete" style="margin-left: 5px; margin-right: 5px;">
+                    </lightning-button-icon>
+                  </td>
+                  <td>
+                    <a href={it.value.URL} target="_blank"> {it.value.Name}</a>
+                  </td>
+                  <td>{it.value.Location}</td>
+                  <td>{it.value.custRefNo}</td>
+                  <td></td>
+
+                  <td></td>
+                  <td></td>
+                  <td></td>
+
+                  <td></td>
+                </tr>
+              </template>
+            </template>
+            <template if:false={it.value.tktBool}>
+              <tr key={it.value.objJobs.Id}>
+                <td></td>
+
+                <td>No Job Tickets</td>
+              </tr>
+            </template>
+          </template>
+        </template>
+      </tbody>
+    </table>
+
+    <!-- aggignment modal -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={modalClassAss}>
+      <div class="slds-modal__container">
+        <div class="slds-modal__header">
+          <h4 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            Job Assignment
+          </h4>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+          style="padding-top: 20px; padding-bottom: 80px; height: 250px;">
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Job Name" type="text"
+                label="Job Name" value="" data-field="JobName" read-only="">
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2"></lightning-layout-item>
+            <lightning-layout-item size="6">
+              <!-- <label>Resource Name</label> -->
+
+              <!-- <c-lookup-cmp object-name="Artera_Resource__c" oneventname={onRecordSelection}>
+                            </c-lookup-cmp> -->
+              <c-custom-lookup-cmp icon-name="standard:user" s-object-api-name="Artera_Resource__c"
+                label="Resource Name" onlookupupdate={lookupRecord} placeholder="type here...">
+              </c-custom-lookup-cmp>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+        <div class="slds-modal__footer">
+          <lightning-button label="Close" title="Non-primary action" onclick={closeModalAssignment}
+            class="slds-m-left_x-small"></lightning-button>
+          <lightning-button label="Save" variant="brand" data-id={selectedJobId} title="Non-primary action"
+            onclick={saveAssignment} class="slds-m-left_x-small"></lightning-button>
+        </div>
+      </div>
+    </section>
+    <div class={modalBackdropClassAss} role="presentation"></div>
+
+    <!-- ticket modal -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={modalClassTkt}>
+      <div class="slds-modal__container">
+        <div class="slds-modal__header">
+          <h4 id="modal-heading-02" class="slds-modal__title slds-hyphenate">
+            Job Ticket
+          </h4>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Job Name" type="text"
+                label="Job Name" value="" data-field="TJobName" read-only="">
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2"></lightning-layout-item>
+            <lightning-layout-item size="6">
+              <lightning-input class="slds-m_right-medium" placeholder="Location" type="text" label="Location" value=""
+                data-field="Location">
+              </lightning-input>
+            </lightning-layout-item>
+          </lightning-layout>
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Customer Ref No" type="text"
+                label="Customer Ref No" data-field="NCUSREFNO">
+              </lightning-input>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+        <div class="slds-modal__footer">
+          <lightning-button label="Close" title="Non-primary action" onclick={closeModalTicket}
+            class="slds-m-left_x-small"></lightning-button>
+          <lightning-button label="Save" variant="brand" data-id={selectedJobId} title="Non-primary action"
+            onclick={saveTicket} class="slds-m-left_x-small"></lightning-button>
+        </div>
+      </div>
+    </section>
+    <div class={modalBackdropClassTkt} role="presentation"></div>
+
+    <!-- Edit job details modal -->
+    <section role="dialog" aria-modal="true" class={editModalClassJob} tabindex="-1" aria-labelledby="modal-heading-01">
+
+      <div class="slds-modal__container " >
+        
+        <div class="slds-modal__header">
+          <h4 id="modal-heading-05" class="slds-modal__title slds-hyphenate">
+            Edit Job Details
+          </h4>
+        </div>
+        <lightning-record-edit-form record-id={selectedJobId} object-api-name="Artera_Job__c"
+            onsubmit={updateJobDetails} onsuccess={updateJobDetails}>
+            <lightning-messages>
+            </lightning-messages>
+            <div class="slds-modal__content slds-p-around_medium " id="modal-content-id-5" style="height : 50vh !important; 
+            max-height: 50vh !important;">
+  
+          
+
+              <!-- record edit form end -->
+            <h3 class="test-id__section-header-container slds-section__title slds-theme--shade">Job Details</h3>
+
+            <lightning-layout multiple-rows>
+
+              <lightning-layout-item size="6">
+                <lightning-output-field field-name="Name">
+                </lightning-output-field>
+
+
+              </lightning-layout-item>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Asset__c">
+                </lightning-input-field>
+                <!-- <lightning-input-field field-name="Assigned_To__c">
+            </lightning-input-field> -->
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <lightning-layout multiple-rows>
+
+              <lightning-layout-item size="6">
+
+                <lightning-output-field field-name="Job_Date__c">
+                </lightning-output-field>
+
+              </lightning-layout-item>
+
+              <lightning-layout-item size="6">
+
+                <lightning-input-field field-name="Status__c">
+                </lightning-input-field>
+
+              </lightning-layout-item>
+
+            </lightning-layout>
+            <lightning-layout multiple-rows >
+
+              <lightning-layout-item size="12">
+                <lightning-input-field field-name="Scope__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <lightning-layout multiple-rows>
+
+              <lightning-layout-item size="6">
+
+                <lightning-input-field field-name="Job_Location__c">
+                </lightning-input-field>
+
+                
+              </lightning-layout-item>
+
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Job_Description__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+
+            </lightning-layout>
+            <lightning-layout multiple-rows>
+
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Artera_Region__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Cancellation_Reason__c">
+                </lightning-input-field>
+
+                
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <lightning-layout multiple-rows>
+
+              <lightning-layout-item size="6">
+                
+                <lightning-input-field field-name="Priority__c">
+                </lightning-input-field>
+                
+              </lightning-layout-item>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Dispatcher_Notes__c">
+                </lightning-input-field>
+                <!-- <lightning-input-field field-name="Project__c">
+                </lightning-input-field> -->
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+
+              </lightning-layout-item>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Contact__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-output-field field-name="Resouces_Names__c">
+                </lightning-output-field>
+              </lightning-layout-item>
+              <lightning-layout-item size="6">
+               
+              </lightning-layout-item>
+
+            </lightning-layout>
+
+            <h3 class="test-id__section-header-container slds-section__title slds-theme--shade">Timing Details</h3>
+
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Start_Date__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+
+            </lightning-layout>
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="End_Date__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+
+            </lightning-layout>
+
+
+            <h3 class="test-id__section-header-container slds-section__title slds-theme--shade">Additional Information</h3>
+
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-output-field field-name="Account__c">
+                </lightning-output-field>
+              </lightning-layout-item>
+            
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Supervisor__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+
+            </lightning-layout>
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Customer_Job_No__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Signed_By__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+
+            </lightning-layout>
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Completion_Notes__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+              
+            
+
+            </lightning-layout>
+
+
+            <h3 class="test-id__section-header-container slds-section__title slds-theme--shade">Billing Information</h3>
+
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="6">
+                <lightning-input-field field-name="Project__c">
+                </lightning-input-field>
+              </lightning-layout-item>
+            
+              <lightning-layout-item size="6">
+                <lightning-output-field field-name="Work_Order__c">
+                </lightning-output-field>
+              </lightning-layout-item>
+            
+
+            </lightning-layout>
+
+          </div>
+            
+
+            <div class="slds-modal__footer" >
+            <lightning-layout multiple-rows="true" horizontal-align="end">
+              <lightning-layout-item padding="around-small">
+                <lightning-button label="Close" title="Non-primary action" onclick={editCloseModalJobDetails}
+                class="slds-m-left_x-small"></lightning-button>
+            
+              </lightning-layout-item>
+              <lightning-layout-item  padding="around-small">
+              <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update"
+                data-id={selectedJobId} label="Update">
+              </lightning-button>
+              </lightning-layout-item>
+            </lightning-layout>
+            </div>
+          </lightning-record-edit-form>
+        
+
+
+      </div>
+
+    </section>
+    <div class={editModalBackdropClassJobDetails} role="presentation"></div>
+
+    <!-- aggignment modal -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={editModalClassAss}>
+      <div class="slds-modal__container">
+        <div class="slds-modal__header">
+          <h4 id="modal-heading-04" class="slds-modal__title slds-hyphenate">
+            Edit Job Assignment
+          </h4>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4" style="height: 250px;">
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Job Assignment" type="text"
+                label="Job Assignment" value="" data-field="UJobAssignment" read-only="">
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2"></lightning-layout-item>
+            <lightning-layout-item size="6">
+              <template if:true={isLookupUsed}>
+                <!--  default-record-id={defaultLookupId} -->
+                <c-custom-lookup-cmp is-used={isLookupUsed} icon-name="standard:user"
+                  s-object-api-name="Artera_Resource__c" label="Resource Name" default-record-id={defaultLookupId}
+                  onlookupupdate={lookupRecord} placeholder="type here...">
+                </c-custom-lookup-cmp>
+              </template>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+        <div class="slds-modal__footer">
+          <lightning-button label="Close" title="Non-primary action" onclick={editCloseModalAss}
+            class="slds-m-left_x-small"></lightning-button>
+          <lightning-button label="Update" variant="brand" data-id={selectedJobId} title="Non-primary action"
+            onclick={updateRecordAss} class="slds-m-left_x-small"></lightning-button>
+        </div>
+      </div>
+    </section>
+    <div class={editModalBackdropClassAss} role="presentation"></div>
+
+    <!-- ticket modal -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={editModalClassTkt}>
+      <div class="slds-modal__container">
+        <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                  </button> -->
+        <div class="slds-modal__header">
+          <h4 id="modal-heading-03" class="slds-modal__title slds-hyphenate">
+            Edit Job Ticket
+          </h4>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Ticket Number" type="text"
+                label="Ticket Number" value="" data-field="UJobName" read-only="">
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2"></lightning-layout-item>
+            <lightning-layout-item size="6">
+              <lightning-input class="slds-m_right-medium" placeholder="Location" type="text" label="Location" value=""
+                data-field="ULocation">
+              </lightning-input>
+            </lightning-layout-item>
+          </lightning-layout>
+
+          <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+              <lightning-input class="slds-m_right-medium heading-class" placeholder="Customer Ref No" type="text"
+                label="Customer Ref No" data-field="UCUSREFNO">
+              </lightning-input>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+        <div class="slds-modal__footer">
+          <lightning-button label="Close" title="Non-primary action" onclick={editCloseModalTicket}
+            class="slds-m-left_x-small"></lightning-button>
+          <lightning-button label="Update" variant="brand" data-id={selectedJobId} title="Non-primary action"
+            data-type="Ticket" onclick={updateRecordTicket} class="slds-m-left_x-small"></lightning-button>
+        </div>
+      </div>
+    </section>
+    <div class={editModalBackdropClassTkt} role="presentation"></div>
+  </div>
+</template>

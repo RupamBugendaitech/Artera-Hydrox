@@ -1,0 +1,24 @@
+.heading{
+    font-size: 20pt;
+    font-weight: 700;
+}
+.tile-class{ 
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+
+}
+.tile-class:hover{
+    background: #f8f8f8; 
+}
+.job-name{
+    cursor: pointer;
+    text-transform: capitalize;
+    color: rgb(1, 68, 134);
+}
+.main-div{
+    background: white;
+    padding: 2px;
+}

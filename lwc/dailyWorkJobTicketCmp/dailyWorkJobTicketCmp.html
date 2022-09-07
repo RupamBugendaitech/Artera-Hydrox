@@ -1,0 +1,499 @@
+<template>
+
+
+    <lightning-card>
+
+
+        <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+        </lightning-spinner>
+
+        <div class="slds-combobox_container slds-p-around_small">
+            
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="3" flexibility="auto">
+                    <span style="text-align:left">
+                        <h1 class="heading">Job Information</h1>
+                    </span>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" flexibility="auto">                
+                </lightning-layout-item>
+                <!-- <lightning-layout-item size="3" flexibility="auto">
+                   <span style="text-align:right">
+                        <button type="button" onclick={pdfHandler} data-id={recordId} class="slds-button slds-button_brand slds-float_right">Generate PDF</button>
+                   </span>
+                </lightning-layout-item> -->
+            </lightning-layout>
+
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item padding="around-small">
+                    <template for:each={getJobDetails} for:item="index">
+                        <lightning-layout key={index.Id} multiple-rows="true">
+                            <lightning-layout-item padding="around-small">
+                                <h2><strong>Truck : </strong>{index.trackname}</h2>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                                <lightning-button-icon variant="brand" onclick={showTruckEditModal}
+                                    icon-name="utility:edit" data-id={index.Id} data-name={index.trackname}
+                                    alternative-text="Edit" title="Edit">
+                                </lightning-button-icon>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                                <h2><strong>Customer email : </strong>{index.contactEmail}</h2>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                                <lightning-button-icon variant="brand" onclick={showEmailEditModal}
+                                    icon-name="utility:edit" data-id={index.Id} data-name={index.Email}
+                                    alternative-text="Edit" title="Edit">
+                                </lightning-button-icon>
+                            
+                            </lightning-layout-item>
+
+
+                        </lightning-layout>
+                    
+                    </template>
+                    <!-- 
+                    <lightning-record-edit-form object-api-name="Artera_Job__c" record-id={recordId} onsuccess={handleSuccess}>
+                        <lightning-input-field variant="label-hidden" field-name="Asset__c"></lightning-input-field>
+                        
+                    </lightning-record-edit-form> -->
+
+                </lightning-layout-item>
+
+
+
+            </lightning-layout>
+
+
+
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item padding="around-small">
+                    <h1 class="heading">Job Allocations</h1>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" alignment-bump="left">
+                    <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh" title="Refresh"
+                        onclick={handleRefresh}></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <div class="slds-m-around_medium">
+                <lightning-layout>
+                    <lightning-layout-item size="12" flexibility="auto">
+                        <div
+                            class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-scrollable--x">
+                            <span class="custom-box">
+                                <table class=" slds-size_1-of-2 table slds-p-around_small slds-m-around_small"
+                                    aria-label="Job Allocations">
+                                    <thead class=" slds-p-around_small">
+                                        <tr class="slds-line-height_reset">
+
+                                            <th scope="col">
+                                                Name
+                                            </th>
+                                            <th scope="col">
+                                                Start Time
+                                            </th>
+                                            <th scope="col">
+                                                End Time
+                                            </th>
+                                            <th scope="col">
+                                                Lunch Time (In mins)
+                                            </th>
+                                            <th scope="col">
+                                                Per Diem
+                                            </th>
+                                            <th scope="col">
+                                                Action
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template if:true={showSearchedValuesForAllocations}>
+                                            <template for:each={getJobAllocations} for:item="index">
+
+                                                <tr key={index} class="sub-tr">
+
+                                                    <td scope="col" class="sub-tr-th" data-label="Name">
+                                                        {index.Name}</td>
+                                                    <td scope="col" class="sub-tr-th" data-label="Start Time">
+                                                        <lightning-formatted-time value={index.StartTime}>
+                                                        </lightning-formatted-time>
+                                                    </td>
+                                                    <td scope="col" class="sub-tr-th" data-label="End Time">
+                                                        <lightning-formatted-time value={index.EndTime}>
+                                                        </lightning-formatted-time>
+                                                    </td>
+                                                    <td scope="col" class="sub-tr-th" data-label="Lunch Time (in mins)">
+                                                        {index.LunchTime}
+                                                    </td>
+                                                    <td scope="col" class="sub-tr-th" data-label="Per Diem">
+                                                        {index.PerDiem}</td>
+                                                    <td>
+                                                        <template if:true={btnBool}>
+                                                            <lightning-button-icon icon-name="utility:edit"
+                                                                variant="brand" data-id={index.Id}
+                                                                data-name={index.Name} data-start={index.StartTime}
+                                                                data-end={index.EndTime} data-lunch={index.LunchTime}
+                                                                data-per={index.PerDiem} alternative-text="Update"
+                                                                class="slds-m-left_xx-small" title="Update"
+                                                                onclick={showModal}>
+                                                            </lightning-button-icon>
+                                                        </template>
+                                                    </td>
+
+                                                </tr>
+
+                                            </template>
+                                        </template>
+                                        <template if:false={showSearchedValuesForAllocations}>
+                                            <tr class="slds-hint-parent">
+                                                <td colspan="5" data-label="No Job Allocated">
+                                                    <div class="slds-truncate text-uppercase"
+                                                        title="There Is No Job Allocated">
+                                                        There Is No Job Allocated</div>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                        <!-- data-name={index.Name}
+                                                                        data-start={index.StartTime}
+                                                                        data-end={index.EndTime}
+                                                                        data-lunch={index.LunchTime}
+                                                                        data-per={index.PerDiem} -->
+
+                                    </tbody>
+                                </table>
+                            </span>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+
+
+            <h1 class="heading">
+                <hr>
+                Job Tickets
+            </h1>
+
+            <template if:true={showSearchedValuesForTickets}>
+                <template for:each={getJobTickets} for:item="index">
+
+                    <div class="demo-only tile-class" key={index.Id}>
+                        <article class="slds-tile slds-media" data-id={index.Id} data-job={index.jobId}
+                            onclick={handleClick}>
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container" title="All Job Tickets">
+
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h3 class="slds-tile__title slds-truncate" title={index.Name}>
+                                    Job Ticket - <span class="ticket-name" data-job={index.jobId} data-id={index.Id}
+                                        onclick={handleClick}>{index.Name}</span>
+                                </h3>
+                                <div class="slds-tile__detail">
+                                    <h3 class="slds-tile__title slds-truncate" title={index.Name}>
+                                        Job Name : <span class="ticket-name" data-job={index.jobId} data-id={index.Id}
+                                            onclick={handleClick}>{index.JobName}</span>
+                                    </h3>
+                                    <h3 class="slds-tile__title slds-truncate" title={index.Location}>
+                                        Job Location : <span class="ticket-name" data-job={index.jobId}
+                                            data-id={index.Id} onclick={handleClick}>{index.Location}</span>
+                                    </h3>
+                                    <h3 class="slds-tile__title slds-truncate" title={index.Notes}>
+                                        Notes : <span class="ticket-name" data-job={index.jobId} data-id={index.Id}
+                                            onclick={handleClick}>{index.Notes}</span>
+                                    </h3>
+                                    <h3 class="slds-tile__title slds-truncate" data-field="jobStatus"
+                                        title={index.Status}>
+                                        Status : <span class="ticket-name" data-job={index.jobId} data-id={index.Id}
+                                            onclick={handleClick}>{index.Status}</span>
+                                    </h3>
+
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={showSearchedValuesForTickets}>
+
+                <div class="demo-only tile-class">
+                    <article class="slds-tile slds-media">
+                        <div class="slds-media__figure">
+                            <!-- <span class="slds-icon_container" title="">
+
+                                            </span> -->
+                        </div>
+                        <div class="slds-media__body">
+                            <h3 class="slds-tile__title slds-truncate" title="There Is No Job Ticket Available">
+                                There Is No Job Ticket Available
+                            </h3>
+                        </div>
+                    </article>
+                </div>
+            </template>
+
+            <!-- signature cmp -->
+
+            <template if:true={bottomCmp}>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12" padding="around-small">
+
+                        <div class="slds-checkbox">
+
+                            <input type="checkbox" name="options" id="checkbox-unique-id-82" data-field="approveTicket"
+                                value="checkbox-unique-id-82" class="checkbox " />
+
+                            <label class="slds-checkbox__label" for="checkbox-unique-id-82">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label slds-m-around_small">I approve the work tickets
+                                    completed
+                                    by HydroX Employees at the Job Site.</span>
+                            </label>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="custom-div">
+
+                    <lightning-input type="text" value={jobData.Signed_By__c} data-field="SignedBy" label=""
+                        placeholder="Acknowledged By" class="sign-inp slds-m-around_small" onkeyup={updateValue}>
+                    </lightning-input>
+                    <br>
+                    <lightning-card class="slds-align_absolute-center" title="Upload File"  icon-name="standard:file">
+                        <div class="slds-p-horizontal_small ">
+                            <lightning-file-upload
+                            
+                            record-id={recordId}    
+                            accept={acceptedFormats}
+                            class="file-selector-large"
+                            onuploadfinished={handleUploadFinished}
+                            multiple
+                          >
+                          </lightning-file-upload>
+                        </div>
+                      </lightning-card>
+                      <br>
+                    <template if:true={bottomBtnBool}>
+                        <lightning-layout multiple-rows="true" horizontal-align="center">
+                            <lightning-layout-item size="6" style="text-align: center;">
+
+                                <button class="slds-button slds-button_brand" style="width: 80%;"
+                                    onclick={handleSaveJob}>Save</button>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="6" style="text-align: center;">
+
+                                <lightning-button variant="brand" label="Complete Job" title="Complete Job"
+                                    onclick={handleCompleteJob}>
+                                </lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </template>
+                    <!-- <lightning-input>
+
+                                <lightning-button variant="brand" label="Click Here To Sign" title="Capture Signature"
+                                    onclick={handleInputSave} class="slds-m-top_medium"></lightning-button>
+                            </lightning-input> -->
+
+                    <!-- <c-capture-signature oneventname={onSaveSignature} signed-by={signedByHere}
+                                record-id={recordId}></c-capture-signature> -->
+                </div>
+            </template>
+
+            <!-- <c-daily-work-digital-signature></c-daily-work-digital-signature> -->
+
+
+
+
+        </div>
+
+    </lightning-card>
+    <section role="dialog" aria-modal="true" class={truckModalClass} tabindex="-1" aria-labelledby="modal-heading-01">
+
+        <div class="slds-modal__container ">
+
+            <div class="slds-modal__header">
+                <h4 id="modal-heading-05" class="slds-modal__title slds-hyphenate">
+                    Edit Truck Details
+                </h4>
+            </div>
+            <lightning-record-edit-form record-id={recordId} object-api-name="Artera_Job__c"
+                onsubmit={updateTruckDetails} onsuccess={updateTruckDetails}>
+                <lightning-messages>
+                </lightning-messages>
+                <div class="slds-modal__content slds-p-around_medium " id="modal-content-id-5" style="height : 15vh !important; 
+              max-height: 15vh !important;">
+
+
+                    <lightning-layout multiple-rows>
+
+                        <lightning-layout-item size="6">
+                            <lightning-input-field field-name="Asset__c">
+                            </lightning-input-field>
+
+
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-hide">
+                            <lightning-input-field class="truckCheckbox" field-name="Truck_Changed_by_Operator__c">
+                            </lightning-input-field>
+
+
+                        </lightning-layout-item>
+
+
+                    </lightning-layout>
+
+                </div>
+
+
+                <div class="slds-modal__footer">
+                    <lightning-layout multiple-rows="true" horizontal-align="end">
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button label="Close" title="Non-primary action" onclick={closeTruckModal}
+                                class="slds-m-left_x-small"></lightning-button>
+
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update"
+                                data-id={selectedRecId} label="Update">
+                            </lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </lightning-record-edit-form>
+
+
+
+        </div>
+
+    </section>
+    <div class={truckModalBackdropClass} role="presentation"></div>
+
+    <section role="dialog" aria-modal="true" class={editModalClass} tabindex="-1" aria-labelledby="modal-heading-01">
+
+        <div class="slds-modal__container ">
+
+            <div class="slds-modal__header">
+                <h4 id="modal-heading-06" class="slds-modal__title slds-hyphenate">
+                    Edit Customer Email
+                </h4>
+            </div>
+            <lightning-record-edit-form record-id={recordId} object-api-name="Artera_Job__c"
+                onsubmit={updateEmail} onsuccess={updateEmail}>
+                <lightning-messages>
+                </lightning-messages>
+                <div class="slds-modal__content slds-p-around_medium " id="modal-content-id-6" style="height : 15vh !important; 
+              max-height: 15vh !important;">
+
+
+                    <lightning-layout multiple-rows>
+
+                        <lightning-layout-item size="6">
+                            <lightning-input-field field-name="Contact1_Email__c">
+                            </lightning-input-field>
+
+
+                        </lightning-layout-item>
+                        
+
+
+                    </lightning-layout>
+
+                </div>
+
+
+                <div class="slds-modal__footer">
+                    <lightning-layout multiple-rows="true" horizontal-align="end">
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button label="Close" title="Non-primary action" onclick={closeEditModal}
+                                class="slds-m-left_x-small"></lightning-button>
+
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update"
+                                data-id={selectedRecId} label="Update">
+                            </lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </lightning-record-edit-form>
+
+
+
+        </div>
+
+    </section>
+    <div class={editModalBackdropClass} role="presentation"></div>
+
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={modalClass}>
+        <div class="slds-modal__container ">
+
+            <div class="slds-modal__header">
+                <h4 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Job Allocation</h4>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="5" padding="around-medium">
+                        <lightning-input class="slds-m_right-medium text-uppercase" read-only=""
+                            placeholder="Artera Resource" type="text" label="Artera Resource" data-field="EResourceName"
+                            value={EName}>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" padding="around-medium"></lightning-layout-item>
+                    <lightning-layout-item size="5" padding="around-medium">
+                        <lightning-input class="slds-m_right-medium" placeholder="Lunch Time" type="text"
+                            label="Lunch Time" value={ELunchTime} data-field="ELunchTime">
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="5" padding="around-medium">
+                        <lightning-input class="slds-m_right-medium" placeholder="Start Time" type="time"
+                            label="Start Time" value={EStartTime} data-field="EStartTime">
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" padding="around-medium"></lightning-layout-item>
+                    <lightning-layout-item size="5" padding="around-medium">
+                        <lightning-input class="slds_left-medium" placeholder="End Time" type="time" label="End Time"
+                            value={EEndTime} data-field="EEndTime">
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="5" padding="around-medium">
+                        <template if:true={getAllPerDiemValues.data}>
+                            <lightning-combobox label="Per Diem" options={getAllPerDiemValues.data.values}
+                                value={EPerDiem} data-field="EPerDiem">
+                            </lightning-combobox>
+                        </template>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+
+
+
+            </div>
+            <div class="slds-modal__footer">
+                <lightning-button label="Close" title="Non-primary action" onclick={closeModal}
+                    class="slds-m-left_x-small"></lightning-button>
+                <lightning-button label="Update" variant="brand" data-id={selectedRecId} title="Non-primary action"
+                    onclick={updateJobAllocationRecord} class="slds-m-left_x-small">
+                </lightning-button>
+            </div>
+        </div>
+    </section>
+    <div class={modalBackdropClass} role="presentation"></div>
+
+    <footer>
+        <div class="slds-text-align_right slds-m-vertical_small">
+            <lightning-button label="Back" title="Non-primary action" onclick={handleBack} class="slds-m-left_x-small">
+            </lightning-button>
+
+        </div>
+    </footer>
+
+</template>

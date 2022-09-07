@@ -12,6 +12,12 @@
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
+            <name>Area</name>
+            <value>
+                <elementReference>Region.recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>Contacts</name>
             <value>
                 <elementReference>Contacts.recordId</elementReference>
@@ -935,7 +941,7 @@
         </connector>
         <fields>
             <name>Screen2</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt;   {!Projects.recordName}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Contact:&lt;/strong&gt;  {!Contacts.recordName}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Start Date:&lt;/strong&gt;  {!Start_Date}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;End Date:&lt;/strong&gt;  {!End_Date}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Start Time: &lt;/strong&gt;{!Start_Time}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Customer Job No: &lt;/strong&gt;{!Customer_Job_Number}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt;  {!Location}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description:  &lt;/strong&gt;{!Description}&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Recurring Days:  &lt;/strong&gt;{!Repeated}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt;   {!Projects.recordName}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Contact:&lt;/strong&gt;  {!Contacts.recordName}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Start Date:&lt;/strong&gt;  {!Start_Date}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;End Date:&lt;/strong&gt;  {!End_Date}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Start Time: &lt;/strong&gt;{!Start_Time}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Customer Job No: &lt;/strong&gt;{!Customer_Job_Number}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt;  {!Location}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Area: &lt;/strong&gt;{!Region.recordName}&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description:  &lt;/strong&gt;{!Description}&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Recurring Days:  &lt;/strong&gt;{!Repeated}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -1178,6 +1184,38 @@
             <fieldText>Location</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Region</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Artera_Region__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Area</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Artera_Job__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
             <name>Description</name>

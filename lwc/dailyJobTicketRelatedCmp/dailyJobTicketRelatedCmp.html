@@ -1,0 +1,176 @@
+<template>
+    <div class="main-div">
+        <div class="slds-align_absolute-center">
+            <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+            </lightning-spinner>
+        </div>
+
+        <lightning-layout multiple-rows="true" horizontal-align="end">
+            <lightning-layout-item padding="around-small">
+                <lightning-button class="slds-m-top_small" variant="brand" name="update" label="Request Leave"
+                    onclick={editShowModalJob}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item padding="around-small">
+                <h1 class="slds-p-around_x-small" style="font-weight: bold; font-size:1rem;">My Jobs</h1>
+
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" alignment-bump="left">
+                <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh" title="Refresh"
+                    onclick={handleRefresh}></lightning-button-icon>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small">
+                <lightning-input placeholder="Start Date" class="searchDate" type="date" variant="label-hidden"
+                    onchange={handleDate}>
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <select class="slds-select" onchange={handleToggleJobs}>
+                    <option value="select">--Select Job Type--</option>
+                    <option value="Show Active Jobs" selected="">Show Active Jobs</option>
+                    <option value="Show All Jobs">Show All Jobs</option>
+                </select>
+            </lightning-layout-item>
+        </lightning-layout>
+
+
+
+        <template for:each={getJobRecords} for:item="index">
+            <article class="slds-tile slds-media tile-class" key={index.Id} data-id={index.Id} onclick={handleClick}>
+
+                <div class="slds-media__body">
+                    <br>
+
+                    <h3 class="slds-tile__title slds-truncate" title={index.Name}>
+                        Job Name : <span class="job-name" data-id={index.Id} onclick={handleClick}>{index.Name}</span>
+                    </h3>
+                    <div class="slds-tile__detail">
+
+                        <!-- <dl class="slds-list_horizontal slds-wrap"> -->
+                        <h3 class="slds-tile__title slds-truncate" title={index.Location}>
+                            Location : <span class="job-name" data-id={index.Id}
+                                onclick={handleClick}>{index.Location}</span>
+                        </h3>
+
+
+                        <h3 class="slds-tile__title slds-truncate" title={index.Account}>
+                            Account Name : <span class="job-name" data-id={index.Id}
+                                onclick={handleClick}>{index.Account}</span>
+                        </h3>
+
+                        <h3 class="slds-tile__title slds-truncate" title={index.StartDate}>
+                            Date : <span class="job-name" data-id={index.Id}
+                                onclick={handleClick}>{index.StartDate}</span>
+                        </h3>
+                        <h3 class="slds-tile__title slds-truncate" title={index.jobType}>
+                            Project Name : <span class="job-name" data-id={index.Id}
+                                onclick={handleClick}>{index.ProjectName}</span>
+                        </h3>
+                        <!-- <dt class="slds-item_label dt-width slds-text-color_weak slds-truncate" title="Job Location">Job
+                                Location: {index.Location}</dt><br>
+                            
+                            <dt class="slds-item_label dt-width slds-text-color_weak slds-truncate" title="Account Name">Account
+                                Name: {index.Account}</dt><br>
+                       
+                            <dt class="slds-item_label dt-width  slds-text-color_weak slds-truncate" title="Start Date">Job
+                                Date: {index.StartDate}</dt>
+                         -->
+
+                        <!-- </dl> -->
+                    </div>
+                </div>
+            </article>
+        </template>
+
+        <section role="dialog" aria-modal="true" class={editModalClassJob} tabindex="-1"
+            aria-labelledby="modal-heading-01">
+
+            <div class="slds-modal__container ">
+
+                <div class="slds-modal__header">
+                    <h4 id="modal-heading-05" class="slds-modal__title slds-hyphenate">
+                         Request leave
+                    </h4>
+                </div>
+                <lightning-record-edit-form object-api-name="Leave__c" onsuccess={handleLeaveCreated}
+                        onsubmit={handleLeaveCreated}>
+                        <lightning-messages>
+                        </lightning-messages>
+                        <div class="slds-modal__content slds-p-around_medium " id="modal-content-id-5" style=" overflow: initial;">
+
+                    
+                        <lightning-layout multiple-rows>
+
+                            <lightning-layout-item size="6">
+                                <lightning-input-field class="leave-start-date" field-name="Leave_Start_date__c" required="true">
+                                </lightning-input-field>
+                            </lightning-layout-item>
+              
+                            <lightning-layout-item size="6">
+                                <lightning-input-field class="leave-end-date" field-name="Leave_End_Date__c" required="true">
+                                </lightning-input-field>
+              
+                              
+                            </lightning-layout-item>
+              
+                          </lightning-layout>
+                        <lightning-layout multiple-rows>
+
+                            <lightning-layout-item size="6">
+                                <lightning-input-field class="leave-reason" field-name="Reason__c" required="true">
+                                </lightning-input-field>
+                            </lightning-layout-item>
+              
+                            <lightning-layout-item size="6">
+                                <lightning-input-field class="leave-Resource" field-name="Artera_Resource__c" required="true">
+                                </lightning-input-field>
+              
+                              
+                            </lightning-layout-item>
+              
+                          </lightning-layout>
+              
+                        
+                        <lightning-input-field class="leave-half" field-name="Half_Day_Leave__c" onchange={toggleAccidentFields}>
+                        </lightning-input-field>
+                        <template if:true={showAccidentFields}>
+                            <lightning-input-field field-name="Leave_Start_Time__c">
+                            </lightning-input-field>
+                           
+                        </template>
+                    </div>
+
+                        <div class="slds-modal__footer">
+                            <lightning-layout multiple-rows="true" horizontal-align="end">
+                                <lightning-layout-item  padding="around-small">
+                                    <lightning-button label="Close" title="Non-primary action"
+                                        onclick={editCloseModalJobDetails} class="slds-m-left_x-small">
+                                    </lightning-button>
+
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="around-small">
+                                    <lightning-button class="slds-m-top_small" variant="brand" type="submit"
+                                        name="save" data-id={selectedJobId} label="Save">
+                                    </lightning-button>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+
+                    </lightning-record-edit-form>
+
+               
+
+
+            </div>
+
+        </section>
+        <div class={editModalBackdropClassJobDetails} role="presentation"></div>
+    </div>
+
+
+</template>

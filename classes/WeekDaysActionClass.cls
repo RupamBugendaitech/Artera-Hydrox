@@ -7,6 +7,7 @@ public class WeekDaysActionClass {
         String Contacts = param[0].Contacts;
         String Projects  = param[0].Projects;
         String Location = param[0].Location;
+        String Area =  param[0].Area;
         String Description = param[0].Description;
         String Customer_Job_Number = param[0].Customer_Job_Number;
         String StartTime = param[0].StartTime;
@@ -71,6 +72,7 @@ public class WeekDaysActionClass {
                     Project__c = Projects,
                     Contact__c = Contacts,
                     Job_Location__c = Location,
+                    Artera_Region__c = Area,
                     Job_Description__c = Description,
                     Customer_Job_No__c = Customer_Job_Number,
                     created_by_using_multi_Job_creation__c = True,
@@ -116,5 +118,7 @@ public class WeekDaysActionClass {
         public String Customer_Job_Number;
          @InvocableVariable
         public String StartTime;
+         @InvocableVariable(required = true)
+        public String Area;
     }
 }

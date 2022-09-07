@@ -1,0 +1,708 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-13-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <div class="slds-box slds-theme--default" style="width:100%">
+        <div class="slds-align_absolute-center">
+            <lightning-spinner if:false={spinnerStatus} variant="brand" size="medium">
+            </lightning-spinner>
+        </div>
+        <div style="padding:2px;float:right;margin-bottom:5px">
+            <lightning-layout multiple-rows="true" horizontal-align="end">
+                <lightning-layout-item padding="around-small">
+                    <lightning-button-icon icon-name="action:refresh" alternative-text="Refresh" title="Refresh"
+                        onclick={afterRefreshOperation}></lightning-button-icon>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-input class="searchDate" placeholder="Start Date" type="date" variant="label-hidden" onchange={handleDate}>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <lightning-input type="text" class="slds-float_right searchKey" aria-activedescendant="option1"
+                        aria-autocomplete="list" aria-controls="listbox-id-12" role="textbox" placeholder="Search Jobs"
+                        min-length="3" onkeyup={handleSearch} variant="label-hidden">
+                    </lightning-input>
+                </lightning-layout-item>
+                
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <c-multi-select-picklist
+                      if:true={regionsList}
+                      title="false"
+                      options={regionsList}
+                      onvaluechange={handleRegion}
+                    >
+                    </c-multi-select-picklist>
+                </lightning-layout-item>
+
+                <template if:true={isShowFilter}>
+                    <lightning-layout-item padding="around-small">
+                        <select class="slds-select" onchange={handleToggleJobs}>
+                            <option value="select">--Select Job Type--</option>
+                            <option value="Show My Jobs" selected="">Show My Jobs</option>
+                            <option value="Show All Jobs">Show All Jobs</option>
+                        </select>
+                    </lightning-layout-item>
+                </template>
+
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <lightning-button variant="brand" label="Approve Selected" title="Approve Selected"
+                        class=" slds-text-body_xx-small" onclick={handleApproveAll}></lightning-button>
+                </lightning-layout-item>
+
+            </lightning-layout>
+
+        </div>
+        <table class="slds-table slds-table_cell-buffe table ownTable" style="height: 60vh">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th width="5%">Action</th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Approve">Approve</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Job Name">Project Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Job Number">Job Name</div>
+                    </th>
+                    <!-- <th scope="col">
+                        <div class="slds-truncate" title="Customer Name">Customer</div>
+                    </th> -->
+                    <th scope="col">
+                        <div class="slds-truncate" title="Scope">Scope</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Location">Location</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Date">Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Truck">Truck</div>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <div class="slds-truncate" style="text-align:center" title="Status">Status</div>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <div class="slds-truncate" style="text-align:center" title="Assigned To">Assigned To</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Area">Area</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Area">Resources</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Project Number">Project Number</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Work Order">Work Order</div>
+                    </th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <template iterator:it={records}>
+                    <template if:true={it.value.isJobShowing}>
+                        <tr class="slds-hint-parent" key={it.value.objJobs.Id}
+                            style="cursor: pointer; border-bottom:1px solid lightgray">
+                            <td style="display:flex;flex-direction:row">
+                                <lightning-input type="checkbox" class="slds-m-bottom_x-small checkbox"
+                                    title="Click Here to Show" label="" data-record-id={it.value.objJobs.Id}>
+                                </lightning-input>
+                                <!-- <a  onclick={hideAndShow} data-record-id={it.index} style="display:block;text-decoration:none;color:black;">                  -->
+
+                                <lightning-button-icon variant="bare" icon-name={iconType}
+                                    class="slds-m-right_xx-small icnClass" alternative-text="Click Here to Expand"
+                                    title="Click Here to Expand" onclick={hideAndShow} data-record-id={it.index}>
+                                </lightning-button-icon>
+                                <!-- </a> -->
+                            </td>
+                            <td data-label="Approve">
+                                <!-- <lightning-button data-record-id={it.value.objJobs.Id} onclick={handleApprove}
+                                variant="Brand" label="Approve" class="slds-m-left_x-small">
+                            </lightning-button> -->
+                                <template if:true={it.value.approveBtn}>
+                                    <img src={supIco} alt="" class="dis-img" data-record-id={it.value.objJobs.Id}
+                                        onclick={handleApprove}>
+                                </template>
+                            </td>
+                            <td data-label="Job Name" class="heading-class">
+                                <a href={it.value.link} target="_blank">{it.value.projectName}</a>
+
+                            </td>
+                            <td data-label="Job Number">
+
+                                {it.value.objJobs.Name}
+
+                            </td>
+
+                            <!-- <td data-label="Customer Name">
+
+                                {it.value.Customer}
+
+                            </td> -->
+                            <td data-label="Scope" class="slds-cell-wrap">
+
+                                {it.value.objJobs.Scope__c}
+
+                            </td>
+                            <td data-label="Location" class="slds-cell-wrap">
+                                {it.value.objJobs.Job_Location__c}
+                            </td>
+                            <td data-label="Date">
+                                {it.value.JobDate}
+                            </td>
+                            <template if:true={truckValue.data}>
+                                {truckVal}
+                            </template>
+                            <td data-label="Truck"> 
+                                <template if:true={it.value.isTruckChecked}>
+                                     <span class="slds-badge truck-checked">{it.value.trackname}</span>
+                                </template>
+                                <template if:false={it.value.isTruckChecked}>
+                                    <span class="slds-badge truck-unchecked">{it.value.trackname}</span>
+                                </template>
+
+                            </td>
+                            <td data-label="Status" style="text-align: center;">
+                                <span class={it.value.BackgroundColor}>{it.value.objJobs.Status__c}</span>
+                            </td>
+                            <td data-label="Assigned To">
+                                {it.value.assignedTo}
+                            </td>
+                            <td data-label="Area">
+                                {it.value.Region}
+                                <!-- {it.value.objJobs.Artera_Region__c} -->
+                            </td>
+                            <td data-label="Resources" class="slds-cell-wrap">
+                                {it.value.PrimaryCDL}
+                  
+                                <!-- {it.value.regionObj} -->
+                              </td>
+                            <td data-label="Project Number">
+                                {it.value.projectId}
+                            </td>
+                            <td data-label="Work Order">
+                                {it.value.woName}
+                            </td>
+                            
+
+                        </tr>
+                        <template if:true={it.value.IsOpen} key={it.value.objJobs.Id} style="padding: 5px;">
+                            <tr scope="row" key={it.value.objJobs.Id} class="sub-tr">
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    <template if:true={isShowFilter}>
+                                        <template if:true={it.value.btnStatus}>
+                                            <template if:true={addAssBtn}>
+                                                <lightning-button-icon variant="brand" onclick={showModalAssignment}
+                                                    data-title={it.value.objJobs.Name}
+                                                    data-record-id={it.value.objJobs.Id} icon-name="utility:add"
+                                                    alternative-text="Add" title="Add" class="addBtn"
+                                                    style="width: 26px; height: 26px;">
+                                                </lightning-button-icon>
+                                            </template>
+                                        </template>
+                                    </template>
+                                    <template if:false={isShowFilter}>
+                                        <template if:true={addAssBtn}>
+                                            <lightning-button-icon variant="brand" onclick={showModalAssignment}
+                                                data-title={it.value.objJobs.Name} data-record-id={it.value.objJobs.Id}
+                                                icon-name="utility:add" alternative-text="Add" title="Add"
+                                                class="addBtn" style="width: 26px; height: 26px;">
+                                            </lightning-button-icon>
+                                        </template>
+                                    </template>
+                                </th>
+                                <th scope="col" colspan="3" class="sub-tr-th">Assignments</th>
+
+                                <th scope="col"></th>
+                            </tr>
+                            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col" class="sub-tr-th">Name</th>
+                                <th scope="col" class="sub-tr-th">Start Time</th>
+                                <th scope="col" class="sub-tr-th">End Time</th>
+                                <th scope="col" class="sub-tr-th">Lunch Time</th>
+                                <th scope="col" class="sub-tr-th">Per Diem</th>
+                                <th scope="col" class="sub-tr-th">Total</th>
+                                <th scope="col" class="sub-tr-th">Employee ID</th>
+                                <th scope="col" class="sub-tr-th">Billable Hours </th>
+                                <th scope="col" class="sub-tr-th">Non-Billable Hours </th>
+                                <th scope="col" class="sub-tr-th">Paycode</th>
+                                <th scope="col" class="sub-tr-th"></th>
+
+                            </tr>
+
+                            <template if:true={it.value.jobBool}>
+                                <template iterator:it={it.value.jobAllocations}>
+                                    <tr key={it.value.Id}>
+                                        <td></td>
+                                        <td class="btn-row">
+                                            <template if:true={editAssBtn}>
+                                                <lightning-button-icon variant="brand" onclick={showModal}
+                                                    icon-name="utility:edit" data-employee={it.value.ResName}
+                                                    data-title={it.value.jobAllocation.Name}
+                                                    data-paycode={it.value.jobAllocation.Paycode__c}
+                                                    data-record-id={it.value.jobAllocation.Id}
+                                                    data-start={it.value.jobAllocation.Start_Time__c}
+                                                    data-end={it.value.jobAllocation.End_Time__c}
+                                                    data-lunch={it.value.jobAllocation.Lunch_Time__c}
+                                                    data-per={it.value.jobAllocation.Per_Diem__c}
+                                                    alternative-text="Edit" title="Edit" style="margin-right:5px">
+                                                </lightning-button-icon>
+                                            </template>
+
+                                            <template if:true={editAssBtn}>
+                                                <template if:true={isShowFilter}>
+                                                    <template if:true={it.value.RecTypeStatus}>
+                                                        <lightning-button-icon variant="success"
+                                                            onclick={deleteRecordFun} data-index-id={it.index}
+                                                            data-type="Assignment" data-title={it.value.Name}
+                                                            data-id={it.value.Id} icon-name="utility:delete"
+                                                            alternative-text="Delete" title="Delete"
+                                                            style="margin-left:5px;margin-right:5px">
+                                                        </lightning-button-icon>
+                                                    </template>
+                                                </template>
+                                            </template>
+
+                                            <template if:true={dltAssBtn}>
+                                                <template if:false={isShowFilter}>
+                                                    <lightning-button-icon variant="success" onclick={deleteRecordFun}
+                                                        data-index-id={it.index} data-type="Assignment"
+                                                        data-title={it.value.Name} data-id={it.value.Id}
+                                                        icon-name="utility:delete" alternative-text="Delete"
+                                                        title="Delete" style="margin-left:5px;margin-right:5px">
+                                                    </lightning-button-icon>
+                                                </template>
+                                            </template>
+                                        </td>
+
+                                        <td><a href={it.value.URL} target="_blank">{it.value.ResName}</a></td>
+                                        <td>
+                                            <lightning-formatted-time value={it.value.jobAllocation.Start_Time__c}>
+                                            </lightning-formatted-time>
+                                        </td>
+                                        <td>
+                                            <lightning-formatted-time value={it.value.jobAllocation.End_Time__c}>
+                                            </lightning-formatted-time>
+                                        </td>
+                                        <td>{it.value.jobAllocation.Lunch_Time__c}</td>
+                                        <td>{it.value.jobAllocation.Per_Diem__c}</td>
+                                        <td>{it.value.jobAllocation.Total_Hours__c}</td>
+                                        <td>{it.value.jobAllocation.Employee_ID__c}</td>
+                                        <td>{it.value.jobAllocation.Total_Billable_Hours__c}</td>
+                                        <td>{it.value.jobAllocation.Total_Non_Billable_Hours__c}</td>
+                                        <td>{it.value.jobAllocation.Paycode__c}</td>
+
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td></td>
+                                    </tr>
+                                </template>
+                            </template>
+                            <template if:false={it.value.jobBool}>
+                                <tr key={it.value.objJobs.Id}>
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Job Allocations</td>
+                                </tr>
+                            </template>
+
+                        </template>
+                        <template if:true={it.value.IsOpen} key={it.value.objJobs.Id} style="padding: 5px;">
+                            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    <template if:true={addTktBtn}>
+                                        <lightning-button-icon variant="brand" onclick={showNewLineItemModal}
+                                            data-record-id={it.value.objJobs.Id}
+                                            data-project-id={it.value.objJobs.Project__c} icon-name="utility:add"
+                                            class="addBtn" alternative-text="Add" title="Add">
+                                        </lightning-button-icon>
+                                    </template>
+                                </th>
+                                <th scope="col" colspan="3" class="sub-tr-th">Tickets</th>
+
+                                <th scope="col"></th>
+                            </tr>
+                            <tr key={it.value.objJobs.Id} class="sub-tr" scope="row">
+                                <th scope="col"></th>
+                                <th></th>
+                                <th scope="col" class="sub-tr-th">Ticket Number</th>
+                                <th scope="col" class="sub-tr-th">Line Item</th>
+                                <th scope="col" class="sub-tr-th">Line Item Quantity</th>
+                                <th scope="col" class="sub-tr-th">Operator Hours</th>
+                                <th scope="col" class="sub-tr-th">Ticket Start Time</th>
+                                <th scope="col" class="sub-tr-th">Ticket End Time</th>
+                                <th scope="col" class="sub-tr-th">Unit Item ID</th>
+                                <th scope="col" class="sub-tr-th">Customer Reference #</th>
+                                <th scope="col" class="sub-tr-th">Notes</th>
+
+
+                            </tr>
+
+                            <template if:true={it.value.mapBool}>
+                                <template for:each={it.value.objJobTickets} for:item="jobTickets" for:index="index">
+
+                                    <tr key={jobTickets.Id}>
+                                        <td></td>
+                                        <td class="btn-row">
+                                            <template if:true={editTktBtn}>
+                                                <template if:false={jobTickets.Unit_Item_Check__c}>
+                                                    <lightning-button-icon variant="brand" onclick={showEditLineItemModal}
+                                                        data-id={jobTickets.Id} data-qty={jobTickets.Quantity__c}  
+                                                        data-line={jobTickets.Unit_Item__c}                                                  
+                                                        data-opehr={jobTickets.Operator_Hours__c}
+                                                        data-project-id={it.value.objJobs.Project__c}
+                                                        icon-name="utility:edit" alternative-text="Edit" title="Edit"
+                                                        style="margin-right:5px">
+                                                    </lightning-button-icon>
+                                                </template>
+                                                <template if:true={jobTickets.Unit_Item_Check__c}>
+                                                    <lightning-button-icon variant="brand" onclick={showEditLineItemModal}
+                                                        data-id={jobTickets.Id} data-qty={jobTickets.Quantity__c}                                                    
+                                                        data-opehr={jobTickets.Operator_Hours__c}
+                                                        data-project-id={it.value.objJobs.Project__c}
+                                                        icon-name="utility:edit" alternative-text="Edit" title="Edit"
+                                                        style="margin-right:5px">
+                                                    </lightning-button-icon>
+                                                </template>
+                                                
+                                            </template>
+
+                                            <template if:true={dltTktBtn}>
+                                                <lightning-button-icon variant="success" onclick={deleteRecordFun}
+                                                    data-id={jobTickets.Id} data-title={jobTickets.Name}
+                                                    data-type="Line Item" icon-name="utility:delete"
+                                                    alternative-text="Delete" title="Delete"
+                                                    style="margin-left:5px;margin-right:5px">
+                                                </lightning-button-icon>
+                                            </template>
+                                        </td>
+                                        <td><a href={jobTickets.Job_Ticket__r.Job_Ticket_Url__c}
+                                                target="_blank">{jobTickets.Job_Ticket__r.Name}</a></td>
+                                        <td>
+                                            <template if:false={jobTickets.Unit_Item_Check__c}>
+                                                {jobTickets.Unit_Item__r.Name}
+                                            </template>
+                                        </td>
+                                        <td>{jobTickets.Quantity__c}</td>
+                                        <td>{jobTickets.Operator_Hours__c}</td>
+                                        <td>
+                                            <lightning-formatted-time value={jobTickets.Job_Ticket__r.Start_Time__c}>
+                                            </lightning-formatted-time>
+                                        </td>
+                                        <td>
+                                            <lightning-formatted-time value={jobTickets.Job_Ticket__r.End_Time__c}>
+                                            </lightning-formatted-time>
+                                        </td>
+                                        <td>
+                                            <template if:false={jobTickets.Unit_Item_Check__c}>
+                                                {jobTickets.Unit_Item__r.Unit_Item_Id__c}
+                                            </template>
+                                        </td>
+                                        <td>{jobTickets.Job_Ticket__r.Customer_Reference_Number__c}</td>
+                                        <td>{jobTickets.Job_Ticket__r.Notes__c}</td>
+
+                                    </tr>
+
+
+                                </template>
+                            </template>
+                            <template if:false={it.value.mapBool}>
+                                <tr key={it.value.objJobTickets.Id}>
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Job Tickets</td>
+                                </tr>
+                            </template>
+
+                        </template>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+
+
+        <!-- start new assignment modal -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={modalClassAss}>
+            <div class="slds-modal__container">
+
+                <div class="slds-modal__header">
+                    <h4 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Job Assignment</h4>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                    style="padding-top:20px;padding-bottom:80px; height:250px;">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="4">
+                            <lightning-input class="slds-m_right-medium heading-class" placeholder="Job Name"
+                                type="text" label="Job Name" value="" data-field="JobName" read-only="">
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2"></lightning-layout-item>
+                        <lightning-layout-item size="6">
+                            <!-- <label>Resource Name</label> -->
+
+                            <!-- <c-lookup-cmp object-name="Artera_Resource__c" oneventname={onRecordSelection}>
+                            </c-lookup-cmp> -->
+                            <c-custom-lookup-cmp icon-name="standard:user" s-object-api-name="Artera_Resource__c"
+                                label="Resource Name" onlookupupdate={lookupRecord} placeholder="type here...">
+                            </c-custom-lookup-cmp>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Close" title="Non-primary action" onclick={closeModalAssignment}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Save" variant="brand" data-id={selectedJobId} title="Non-primary action"
+                        onclick={saveAssignment} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class={modalBackdropClassAss} role="presentation"></div>
+        <!-- end new assignment modal -->
+
+
+        <!-- edit job allocation-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class={modalClass}>
+            <div class="slds-modal__container">
+                <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button> -->
+                <div class="slds-modal__header">
+                    <h4 id="modal-heading-07" class="slds-modal__title slds-hyphenate">Edit Job Allocation</h4>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-7">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="5">
+                            <lightning-input class="slds-m_right-medium text-uppercase" read-only=""
+                                placeholder="Artera Resource" type="text" label="Artera Resource"
+                                data-field="EResourceName" value={EEmp}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2"></lightning-layout-item>
+                        <lightning-layout-item size="5">
+                            <lightning-input class="slds-m_right-medium" placeholder="Lunch Time" type="text"
+                                label="Lunch Time" value={ELunchTime} data-field="ELunchTime">
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="5">
+                            <lightning-input class="slds-m_right-medium" placeholder="Start Time" type="time"
+                                label="Start Time" value={EStartTime} data-field="EStartTime">
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2"></lightning-layout-item>
+                        <lightning-layout-item size="5">
+                            <lightning-input class="slds_left-medium" placeholder="End Time" type="time"
+                                label="End Time" value={EEndTime} data-field="EEndTime">
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="5">
+                            <template if:true={getAllPerDiemValues.data}>
+                                <lightning-combobox label="Per Diem" options={getAllPerDiemValues.data.values}
+                                    value={EPerDiem} data-field="EPerDiem">
+                                </lightning-combobox>
+                            </template>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2"></lightning-layout-item>
+                        <template if:true={showOpHr}>
+                            <lightning-layout-item size="5">
+                                <template if:true={getAllPayCodeValues.data}>
+                                    <lightning-combobox label="Pay Code" options={getAllPayCodeValues.data.values}
+                                        value={EPayCode} data-field="EPayCode">
+                                    </lightning-combobox>
+                                </template>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+
+
+
+
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Close" title="Non-primary action" onclick={closeModal}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Update" variant="brand" title="Non-primary action"
+                        onclick={updateJobAllocationRecord} class="slds-m-left_x-small">
+                    </lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class={modalBackdropClass} role="presentation"></div>
+        <!-- edit job allocation-->
+
+
+        <!-- modal New Ticker -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class={modalCreateTicketDetails}>
+            <div class="slds-modal__container">
+
+                <div class="slds-modal__header">
+                    <h4 id="modal-heading-03" class="slds-modal__title slds-hyphenate">New Job Ticket Detail</h4>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3" style="height: 250px; ">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover "
+                        aria-label="Example table of Opportunities with no row hovers">
+                        <thead>
+                            <tr>
+                                <th class="slds-text-align_left" style="width:5%">#</th>
+                                <th class="slds-text-align_left" style="width:20%">Ticket Number</th>
+                                <th class="slds-text-align_left" style="width:50%">Line Item</th>
+                                <th class="slds-text-align_left" style="width:20%">Quantity</th>
+                                <th class="slds-text-align_left" style="width:5%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="item-body">
+
+
+                            <template for:each={recordList} for:item="rec" for:index="indx">
+                                <tr key={rec.key} id={rec.key} class="slds-hint-parent">
+                                    <td class="slds-text-align_left">{rec.key}</td>
+                                    <td class="slds-text-align_left">
+                                        <!-- <lightning-input variant="label-hidden" data-id={indx}
+                                        data-field="NTicket" value="0" onchange={handleTicketChange}></lightning-input> -->
+                                        <template if:true={isModalNewJob}>
+                                            <c-ticket-picklist class="slds-p-top_xx-small" record-id={selectedJobId}
+                                                data-id={indx} data-type="New" onticketvalue={handleTicketValues}>
+                                            </c-ticket-picklist>
+                                        </template>
+                                    </td>
+                                    <td class="slds-text-align_left">
+                                        <div class="own-class">
+                                            <!-- <c-custom-lookup-cmp data-id={indx} data-type="New" icon-name="standard:user"
+                                            s-object-api-name="Project_Item__c"
+                                            onlookupupdate={lookupRecord}>
+                                        </c-custom-lookup-cmp> -->
+                                            <template if:true={isModalNewJob}>
+                                                <c-line-item-picklist-cmp class="slds-p-top_xx-small"
+                                                    record-id={projectId} data-id={indx} data-type="New"
+                                                    onlineitemvalue={handleLineItemValues} label-mode="label-hidden">
+                                                </c-line-item-picklist-cmp>
+                                            </template>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <lightning-input variant="label-hidden" data-id={indx} data-field="NQuantity"
+                                            value="0" onchange={handleQuantityChange}></lightning-input>
+                                    </td>
+                                    <td class="slds-text-align_left">
+
+                                        <template if:true={rec.ShowDel}>
+                                            <lightning-button-icon variant="bare" icon-name="utility:delete"
+                                                data-id={indx} alternative-text="Delete" class="slds-m-left_x-small "
+                                                onclick={removeRow} title="Delete">
+                                            </lightning-button-icon>
+                                        </template>
+                                        <template if:false={rec.ShowDel}>
+
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <div class="slds-text-align_right">
+
+                        <lightning-button variant="neutral" label="Add Row" icon-name="utility:add"
+                            title="Looks like a link" onclick={addRow} class="slds-m-right_medium">
+                        </lightning-button>
+                    </div>
+
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Close" title="Non-primary action" onclick={closeNewLineItemModal}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Save" variant="brand" data-id={selectedJobId} title="Non-primary action"
+                        onclick={handleSaveLineItems} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class={modalBackdropCreateTicketDetails} role="presentation"></div>
+        <!-- edit Modal lineItem -->
+
+
+        <!-- edit Modal lineItem -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class={modalEditTicket}>
+            <div class="slds-modal__container">
+
+                <div class="slds-modal__header">
+                    <h4 id="modal-heading-04" class="slds-modal__title slds-hyphenate">Edit Ticket Detail</h4>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4" style="height: 250px; ">
+                    <template if:true={isModalEditTkt}>
+
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="6" padding="around-small">
+                                <template if:true={isModalEditTkt}>
+                                    <c-line-item-picklist-cmp class="slds-p-top_xx-small" record-id={projectId}
+                                        data-id={indx} data-type="Edit" line-item={defaultLookupId}
+                                        onlineitemvalue={handleLineItemValues} label="Line Item" label-mode="">
+                                    </c-line-item-picklist-cmp>
+                                </template>
+
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="around-small">
+                                <template if:true={quantityEdit}>
+                                    <lightning-input label="Quantity" data-field="EQuantity" value={Eqty} read-only="">
+                                    </lightning-input>
+                                </template>
+                                <template if:false={quantityEdit}>
+                                    <lightning-input label="Quantity" data-field="EQuantity" value={Eqty}>
+                                    </lightning-input>
+                                </template>
+                            </lightning-layout-item>
+
+                        </lightning-layout>
+
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="6" padding="around-small">
+                                <template if:true={showOpHr}>
+                                    <lightning-input label="Operator Hours" data-field="EOperatorHour" value={Eopehr}>
+                                    </lightning-input>
+                                </template>
+
+                            </lightning-layout-item>
+
+                        </lightning-layout>
+                    </template>
+
+
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Close" title="Non-primary action" onclick={closeEditModal}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Update" variant="brand" title="Non-primary action"
+                        onclick={handleEditLineItem} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class={modalBackdropEditTicket} role="presentation"></div>
+        <!-- edit Modal lineItem -->
+
+
+
+    </div>
+</template>
